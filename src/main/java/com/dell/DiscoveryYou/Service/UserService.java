@@ -29,7 +29,6 @@ public class UserService {
     private SkillRepository skillRepository;
     private UserUtils userUtils;
 
-    @Autowired
     public UserService(UserRepository userRepository, InterestRepository interestRepository, SkillRepository skillRepository, UserUtils userutils) {
         this.users = new HashMap<String, User>();
         this.userRepository = userRepository;
@@ -40,13 +39,15 @@ public class UserService {
 
     public List<User> getUsersWithMatchingPercentage(String userBadge, int startPage, int pageOffset) throws UserNotFound {
         User appUser = userRepository.findByBadge(userBadge).orElse(null);
-        if (appUser == null) throw new UserNotFound("User with badge " + userBadge +" not found");
+        if (appUser == null)
+            throw new UserNotFound("User with badge " + userBadge + " not found");
         List<User> relatedUsers = userRepository.findAll(PageRequest.of(startPage, pageOffset)).getContent();
         List<UserMatchDTO> users = new ArrayList<>();
         relatedUsers.forEach((relUser) -> users.add(userUtils.calculateMatchingPercentage(appUser, relUser)));
         return relatedUsers;
     }
 
+    @Transactional
     public User createUser(CreateUserDetailsRequestModel user) {
         User returnValue = users.get(user.getBadge());
         if (returnValue == null) {
@@ -62,24 +63,37 @@ public class UserService {
         return returnValue;
     }
 
+    @Transactional
+    public boolean deleteUser(String userBadge) throws UserNotFound {
+        User user = getUser(userBadge);
+        if (user == null)
+            throw new UserNotFound("User with badge " + userBadge + " not found");
+        user.getInterests().forEach(interest -> user.removeInterest(interest));
+        user.getSkills().forEach(skill -> user.removeSkill(skill));
+        try {
+            userRepository.delete(user);
+        } catch (Exception e) {
+            throw e;
+        }
+        return true;
+    }
+
     public List<User> findAll() {
         return this.userRepository.findAll();
     }
 
-    public User getUsersByBadge(String badge) {
-        User returnValue = users.get(badge);
-
+    public User getUsersByBadge(String userBadge) {
+        User returnValue = users.get(userBadge);
         if(returnValue == null)
-            returnValue = this.userRepository.findByBadge(badge).orElse(null);
-
+            returnValue = this.userRepository.findByBadge(userBadge).orElse(null);
         return returnValue;
     }
 
     @Transactional
-    public boolean associateInterestToUser(String userBadge, String interestName) throws UserNotFound, UserAlreadyHasInterest{
+    public boolean associateInterestToUser(String userBadge, String interestName) throws UserNotFound, UserAlreadyHasInterest {
         User user = this.getUser(userBadge);
         if (user == null)
-            throw new UserNotFound("User with badge " + userBadge +" not found");
+            throw new UserNotFound("User with badge " + userBadge + " not found");
         if (user.getInterests().stream().map(interest -> interest.getName()).collect(Collectors.toList()).contains(interestName))
             throw new UserAlreadyHasInterest("User with badge " + userBadge + " already has interest \"" + interestName + "\"");
         Interest interest = getInterest(interestName);
@@ -90,10 +104,10 @@ public class UserService {
     }
 
     @Transactional
-    public boolean associateSkillToUser(String userBadge, String skillName) throws UserNotFound, UserAlreadyHasSkill{
+    public boolean associateSkillToUser(String userBadge, String skillName) throws UserNotFound, UserAlreadyHasSkill {
         User user = this.getUser(userBadge);
         if (user == null)
-            throw new UserNotFound("User with badge " + userBadge +" not found");
+            throw new UserNotFound("User with badge " + userBadge + " not found");
         if (user.getSkills().stream().map(skill -> skill.getName()).collect(Collectors.toList()).contains(skillName))
             throw new UserAlreadyHasSkill("User with badge " + userBadge + " already has skill \"" + skillName + "\"");
         Skill skill = getSkill(skillName);
@@ -104,10 +118,10 @@ public class UserService {
     }
 
     @Transactional
-    public boolean disassociateInterestFromUser(String userBadge, String interestName) throws UserNotFound, UserDoesNotHaveInterest{
+    public boolean disassociateInterestFromUser(String userBadge, String interestName) throws UserNotFound, UserDoesNotHaveInterest {
         User user = this.getUser(userBadge);
         if (user == null)
-            throw new UserNotFound("User with badge " + userBadge +" not found");
+            throw new UserNotFound("User with badge " + userBadge + " not found");
         if (!user.getInterests().stream().map(interest -> interest.getName()).collect(Collectors.toList()).contains(interestName))
             throw new UserDoesNotHaveInterest("user with badge " + userBadge + " does not have interest \"" + interestName + "\"");
         Interest interest = getInterest(interestName);
@@ -119,7 +133,7 @@ public class UserService {
     public boolean disassociateSkillFromUser(String userBadge, String skillName) throws UserNotFound, UserDoesNotHaveSkill {
         User user = this.getUser(userBadge);
         if (user == null)
-            throw new UserNotFound("User with badge " + userBadge +" not found");
+            throw new UserNotFound("User with badge " + userBadge + " not found");
         if (!user.getSkills().stream().map(skill -> skill.getName()).collect(Collectors.toList()).contains(skillName))
             throw new UserDoesNotHaveSkill("user with badge " + userBadge + " does not have interest \"" + skillName + "\"");
         Skill skill = getSkill(skillName);

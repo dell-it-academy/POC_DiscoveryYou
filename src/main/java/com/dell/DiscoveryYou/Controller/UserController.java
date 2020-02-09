@@ -2,6 +2,7 @@ package com.dell.DiscoveryYou.Controller;
 
 import com.dell.DiscoveryYou.Entity.Interest;
 import com.dell.DiscoveryYou.Entity.User;
+import com.dell.DiscoveryYou.Exception.*;
 import com.dell.DiscoveryYou.Requests.CreateUserDetailsRequestModel;
 import com.dell.DiscoveryYou.Service.InterestService;
 import com.dell.DiscoveryYou.Service.UserService;
@@ -68,8 +69,8 @@ public class UserController {
     }
 
     @PostMapping("/associate/interest")
-    public ResponseEntity<String> associateInterestToUser(@NotNull Long userId, @NotNull Long interestId) {
-        boolean result = userService.associateInterestToUser(userId, interestId);
+    public ResponseEntity<String> associateInterestToUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String interestName) throws UserNotFound, UserAlreadyHasInterest {
+        boolean result = userService.associateInterestToUser(userBadge, interestName);
         if (result) {
             return ResponseEntity.status(HttpStatus.OK).build();
         } else {
@@ -78,8 +79,8 @@ public class UserController {
     }
 
     @PostMapping("/associate/skill")
-    public ResponseEntity<String> associateSkillToUser(@NotNull Long userId, @NotNull Long skillId) {
-        boolean result = userService.associateSkillToUser(userId, skillId);
+    public ResponseEntity<String> associateSkillToUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String skillName) throws UserNotFound, UserAlreadyHasSkill {
+        boolean result = userService.associateSkillToUser(userBadge, skillName);
         if (result) {
             return ResponseEntity.status(HttpStatus.OK).build();
         } else {
@@ -88,8 +89,8 @@ public class UserController {
     }
 
     @PostMapping("disassociate/interest")
-    public ResponseEntity<String> disassociateInterestFromUser(@NotNull Long userId, @NotNull Long interestId) {
-        boolean result = userService.disassociateInterestFromUser(userId, interestId);
+    public ResponseEntity<String> disassociateInterestFromUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String interestName) throws UserNotFound, UserDoesNotHaveInterest {
+        boolean result = userService.disassociateInterestFromUser(userBadge, interestName);
         if (result) {
             return ResponseEntity.status(HttpStatus.OK).build();
         } else {
@@ -98,8 +99,8 @@ public class UserController {
     }
 
     @PostMapping("disassociate/skill")
-    public ResponseEntity<String> disassociateSkillFromUser(@NotNull Long userId, @NotNull Long skillId) {
-        boolean result = userService.disassociateSkillFromUser(userId, skillId);
+    public ResponseEntity<String> disassociateSkillFromUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String skillName) throws UserNotFound, UserDoesNotHaveSkill {
+        boolean result = userService.disassociateSkillFromUser(userBadge, skillName);
         if (result) {
             return ResponseEntity.status(HttpStatus.OK).build();
         } else {
