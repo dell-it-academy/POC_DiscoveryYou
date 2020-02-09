@@ -39,9 +39,8 @@ public class UserService {
     }
 
     public List<User> getUsersWithMatchingPercentage(String userBadge, int startPage, int pageOffset) throws UserNotFound {
-
         User appUser = userRepository.findByBadge(userBadge).orElse(null);
-        if (appUser == null) throw new UserNotFound("User with badge ".concat(userBadge).concat(" not found"));
+        if (appUser == null) throw new UserNotFound("User with badge " + userBadge +" not found");
         List<User> relatedUsers = userRepository.findAll(PageRequest.of(startPage, pageOffset)).getContent();
         List<UserMatchDTO> users = new ArrayList<>();
         relatedUsers.forEach((relUser) -> users.add(userUtils.calculateMatchingPercentage(appUser, relUser)));
@@ -50,21 +49,15 @@ public class UserService {
 
     public User createUser(CreateUserDetailsRequestModel user) {
         User returnValue = users.get(user.getBadge());
-
-        if (returnValue == null)
+        if (returnValue == null) {
             returnValue = this.userRepository.findByBadge(user.getBadge()).orElse(null);
-        else
-            return returnValue;
-
-        if (returnValue != null)
-            return returnValue;
-
-        returnValue = new User();
-        returnValue.setFirstName(user.getFirstName());
-        returnValue.setLastName(user.getLastName());
-        returnValue.setBadge(user.getBadge());
-
-        userRepository.save(returnValue);
+        } else {
+            returnValue = new User();
+            returnValue.setFirstName(user.getFirstName());
+            returnValue.setLastName(user.getLastName());
+            returnValue.setBadge(user.getBadge());
+            userRepository.save(returnValue);
+        }
         users.put(returnValue.getBadge(), returnValue);
         return returnValue;
     }
@@ -90,9 +83,8 @@ public class UserService {
         if (user.getInterests().stream().map(interest -> interest.getName()).collect(Collectors.toList()).contains(interestName))
             throw new UserAlreadyHasInterest("User with badge " + userBadge + " already has interest \"" + interestName + "\"");
         Interest interest = getInterest(interestName);
-        if (interest == null) {
+        if (interest == null)
             interest = interestRepository.save(new Interest(interestName));
-        }
         user.insertInterest(interest);
         return userRepository.save(user) instanceof User;
     }
