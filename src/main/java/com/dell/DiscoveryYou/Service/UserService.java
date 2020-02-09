@@ -3,7 +3,7 @@ package com.dell.DiscoveryYou.Service;
 import com.dell.DiscoveryYou.Entity.Interest;
 import com.dell.DiscoveryYou.Entity.Skill;
 import com.dell.DiscoveryYou.Entity.User;
-import com.dell.DiscoveryYou.Exception.UserNotFound;
+import com.dell.DiscoveryYou.Exception.*;
 import com.dell.DiscoveryYou.Repository.InterestRepository;
 import com.dell.DiscoveryYou.Repository.SkillRepository;
 import com.dell.DiscoveryYou.Repository.UserRepository;
@@ -15,8 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -80,60 +82,66 @@ public class UserService {
         return returnValue;
     }
 
-    public boolean associateInterestToUser(Long userId, Long interestId) {
-        Interest interest = getInterest(interestId);
-        if (interest != null) {
-            User user = getUser(userId);
-            if (user != null) {
-                user.insertInterest(interest);
-                userRepository.save(user);
-                return true;
-            }
+    @Transactional
+    public boolean associateInterestToUser(String userBadge, String interestName) throws UserNotFound, UserAlreadyHasInterest{
+        User user = this.getUser(userBadge);
+        if (user == null)
+            throw new UserNotFound("User with badge " + userBadge +" not found");
+        if (user.getInterests().stream().map(interest -> interest.getName()).collect(Collectors.toList()).contains(interestName))
+            throw new UserAlreadyHasInterest("User with badge " + userBadge + " already has interest \"" + interestName + "\"");
+        Interest interest = getInterest(interestName);
+        if (interest == null) {
+            interest = interestRepository.save(new Interest(interestName));
         }
-        return false;
+        user.insertInterest(interest);
+        return userRepository.save(user) instanceof User;
     }
 
-    public boolean associateSkillToUser(Long userId, Long skillId) {
-        Skill skill = getSkill(skillId);
-        if (skill != null) {
-            User user = getUser(userId);
-            if (user != null) {
-                user.insertSkill(skill);
-                userRepository.save(user);
-                return true;
-            }
-        }
-        return false;
+    @Transactional
+    public boolean associateSkillToUser(String userBadge, String skillName) throws UserNotFound, UserAlreadyHasSkill{
+        User user = this.getUser(userBadge);
+        if (user == null)
+            throw new UserNotFound("User with badge " + userBadge +" not found");
+        if (user.getSkills().stream().map(skill -> skill.getName()).collect(Collectors.toList()).contains(skillName))
+            throw new UserAlreadyHasSkill("User with badge " + userBadge + " already has skill \"" + skillName + "\"");
+        Skill skill = getSkill(skillName);
+        if (skill == null)
+            skill = skillRepository.save(new Skill(skillName));
+        user.insertSkill(skill);
+        return userRepository.save(user) instanceof User;
     }
 
-    public boolean disassociateInterestFromUser(Long userId, Long interestId) {
-        Interest interest = getInterest(interestId);
-        if (interest != null) {
-            User user = getUser(userId);
-            if (user != null) {
-                user.removeInterest(interest);
-                userRepository.save(user);
-                return true;
-            }
-        }
-        return false;
+    @Transactional
+    public boolean disassociateInterestFromUser(String userBadge, String interestName) throws UserNotFound, UserDoesNotHaveInterest{
+        User user = this.getUser(userBadge);
+        if (user == null)
+            throw new UserNotFound("User with badge " + userBadge +" not found");
+        if (!user.getInterests().stream().map(interest -> interest.getName()).collect(Collectors.toList()).contains(interestName))
+            throw new UserDoesNotHaveInterest("user with badge " + userBadge + " does not have interest \"" + interestName + "\"");
+        Interest interest = getInterest(interestName);
+        user.removeInterest(interest);
+        return userRepository.save(user) instanceof User;
     }
 
-    public boolean disassociateSkillFromUser(Long userId, Long skillId) {
-        Skill skill = getSkill(skillId);
-        if (skill != null) {
-            User user = getUser(userId);
-            if (user != null) {
-                user.removeSkill(skill);
-                userRepository.save(user);
-                return true;
-            }
-        }
-        return false;
+    @Transactional
+    public boolean disassociateSkillFromUser(String userBadge, String skillName) throws UserNotFound, UserDoesNotHaveSkill {
+        User user = this.getUser(userBadge);
+        if (user == null)
+            throw new UserNotFound("User with badge " + userBadge +" not found");
+        if (!user.getSkills().stream().map(skill -> skill.getName()).collect(Collectors.toList()).contains(skillName))
+            throw new UserDoesNotHaveSkill("user with badge " + userBadge + " does not have interest \"" + skillName + "\"");
+        Skill skill = getSkill(skillName);
+        user.removeSkill(skill);
+        return userRepository.save(user) instanceof User;
     }
 
     private User getUser(Long userId) {
         Optional<User> userOptional = userRepository.findById(userId);
+        return userOptional.orElse(null);
+    }
+
+    private User getUser(String userBadge) {
+        Optional<User> userOptional = userRepository.findByBadge(userBadge);
         return userOptional.orElse(null);
     }
 

@@ -24,7 +24,9 @@ public class Skill {
     @Size(min = 1, max = 5)
     private byte rank;
 
-    public Skill() {}
+    public Skill(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
