@@ -24,9 +24,9 @@ public class User {
     @Column(unique = true)
     private String badge;
 
-    @ManyToMany
+    @OneToMany(mappedBy = "USERS")
     private List<Interest> interests;
-    @ManyToMany
+    @OneToMany(mappedBy = "USERS")
     private List<Skill> skills;
 
     @Override
