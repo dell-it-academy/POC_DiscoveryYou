@@ -5,6 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,6 +46,8 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
      * @return List of users.
      */
     public List<User> findByFirstNameIgnoreCaseContaining(String searchName);
+
+    public List<User> findAll(Pageable p);
 
     public List<User> findAll();
 }

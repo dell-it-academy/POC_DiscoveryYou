@@ -12,6 +12,8 @@ import com.dell.DiscoveryYou.Response.UserMatchDTO;
 import com.dell.DiscoveryYou.Util.UserUtils;
 import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -35,9 +37,10 @@ public class UserService {
     }
 
     public List<User> getUsersWithMatchingPercentage(String userBadge, int startPage, int pageOffset) throws UserNotFound {
+
         User appUser = userRepository.findByBadge(userBadge).orElse(null);
         if (appUser == null) throw new UserNotFound("User with badge ".concat(userBadge).concat(" not found"));
-        List<User> relatedUsers = userRepository.findAll();
+        List<User> relatedUsers = userRepository.findAll(PageRequest.of(startPage, pageOffset)).getContent();
         List<UserMatchDTO> users = new ArrayList<>();
         relatedUsers.forEach((relUser) -> users.add(userUtils.calculateMatchingPercentage(appUser, relUser)));
         return relatedUsers;
@@ -46,7 +49,7 @@ public class UserService {
     public User createUser(CreateUserDetailsRequestModel user) {
         User returnValue = users.get(user.getBadge());
 
-        if(returnValue == null)
+        if (returnValue == null)
             returnValue = this.userRepository.findByBadge(user.getBadge()).orElse(null);
         else
             return returnValue;
@@ -64,7 +67,7 @@ public class UserService {
         return returnValue;
     }
 
-    public List<User> findAll(){
+    public List<User> findAll() {
         return this.userRepository.findAll();
     }
 
