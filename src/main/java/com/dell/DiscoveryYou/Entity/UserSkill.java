@@ -13,7 +13,7 @@ public class UserSkill {
     @ManyToOne
     @MapsId("user_id")
     @JoinColumn(name = "user_id")
-    private UserRest userRest;
+    private User userRest;
 
     @ManyToOne
     @MapsId("skill_id")

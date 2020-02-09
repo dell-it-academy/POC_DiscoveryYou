@@ -142,8 +142,18 @@ public class UserService {
         return interestOptional.orElse(null);
     }
 
+    private Interest getInterest(String interestName) {
+        Optional<Interest> interestOptional = interestRepository.findByName(interestName);
+        return interestOptional.orElse(null);
+    }
+
     private Skill getSkill(Long skillId) {
         Optional<Skill> skillOptional = skillRepository.findById(skillId);
+        return skillOptional.orElse(null);
+    }
+
+    private Skill getSkill(String skillName) {
+        Optional<Skill> skillOptional = skillRepository.findByName(skillName);
         return skillOptional.orElse(null);
     }
 }
