@@ -1,8 +1,8 @@
 package com.dell.DiscoveryYou.Controller;
 
 import com.dell.DiscoveryYou.Entity.Interest;
-import com.dell.DiscoveryYou.Requests.CreateInterestDetailsRequestModel;
-import com.dell.DiscoveryYou.Services.InterestService;
+import com.dell.DiscoveryYou.Request.CreateInterestDetailsRequestModel;
+import com.dell.DiscoveryYou.Service.InterestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

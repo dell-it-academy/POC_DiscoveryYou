@@ -1,8 +1,8 @@
 package com.dell.DiscoveryYou.Controller;
 
 import com.dell.DiscoveryYou.Entity.Skill;
-import com.dell.DiscoveryYou.Requests.CreateSkillDetailsRequestModel;
-import com.dell.DiscoveryYou.Services.SkillService;
+import com.dell.DiscoveryYou.Request.CreateSkillDetailsRequestModel;
+import com.dell.DiscoveryYou.Service.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

@@ -1,9 +1,7 @@
 package com.dell.DiscoveryYou.Controller;
 
-import com.dell.DiscoveryYou.Entity.Interest;
 import com.dell.DiscoveryYou.Entity.User;
-import com.dell.DiscoveryYou.Requests.CreateUserDetailsRequestModel;
-import com.dell.DiscoveryYou.Service.InterestService;
+import com.dell.DiscoveryYou.Request.CreateUserDetailsRequestModel;
 import com.dell.DiscoveryYou.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 

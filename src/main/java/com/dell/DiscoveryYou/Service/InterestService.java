@@ -4,8 +4,8 @@ import com.dell.DiscoveryYou.Entity.Interest;
 import com.dell.DiscoveryYou.Entity.User;
 import com.dell.DiscoveryYou.Repository.InterestRepository;
 import com.dell.DiscoveryYou.Repository.UserRepository;
-import com.dell.DiscoveryYou.Requests.CreateInterestDetailsRequestModel;
-import com.dell.DiscoveryYou.Utility.ReturnMessages;
+import com.dell.DiscoveryYou.Request.CreateInterestDetailsRequestModel;
+import com.dell.DiscoveryYou.Util.ReturnMessages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
