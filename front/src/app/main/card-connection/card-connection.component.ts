@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-card-connection',
-  templateUrl: './card-connection.component.html',
-  styleUrls: ['./card-connection.component.css']
+  templateUrl: '../shared/template/card/card.html',
+  styleUrls: ['../shared/template/card/card-connection.component.css']
 })
 export class CardConnectionComponent implements OnInit {
-  numberConnections: Number = 10;
+  numberCard: Number = 10;
+  textCard: String = "Connections Number";
   constructor() { }
 
   ngOnInit(): void {
