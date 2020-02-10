@@ -1,0 +1,9 @@
+#wrapper {
+    display: -webkit-flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#wrapper *{
+    margin:2%;
+}

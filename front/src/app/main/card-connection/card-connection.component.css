@@ -1,0 +1,45 @@
+*{
+        background-color: #007CBA;
+}
+
+#wrapper{
+    height: 320px;
+    width: 320px;
+    border:10px solid #007CBA;
+    box-shadow: 5px 5px 5px grey;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+}
+
+#wrapper div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#nmConnect{
+    flex-grow:5;
+    font-size: 2em;
+    /* Version 1*/
+    color: #007CBA;
+    background-color: white;
+
+    /* Version 2*/
+    /* background-color: inherit; /*Actually, just comment whole version 1, so you get same result as version 2 */
+
+}
+#nmConnect *{
+    background-color: white;
+}
+#titleConnect{
+    flex-grow:1;
+    font-size:1.5em;
+    background-color: white;
+    color: #007CBA;
+    width: 100%;
+    margin-top:10px;
+} 
+#titleConnect * {
+    background-color: inherit;
+}

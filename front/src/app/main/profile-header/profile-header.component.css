@@ -5,7 +5,9 @@ div img {
     display: block;
     margin:0 auto;
     box-shadow: 5px 5px 10px grey;
-    margin-bottom: 2%
+    margin-bottom: 2%;
+    border:10px solid #007CBA;
+    
 }   
 div{
     text-align: center;

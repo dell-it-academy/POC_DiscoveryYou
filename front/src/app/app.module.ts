@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { ProfileHeaderComponent } from './main/profile-header/profile-header.component';
 import { CardConnectionComponent } from './main/card-connection/card-connection.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CardDashboardComponent } from './main/card-dashboard/card-dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileHeaderComponent,
-    CardConnectionComponent
+    CardConnectionComponent,
+    CardDashboardComponent
   ],
   imports: [
     BrowserModule,
