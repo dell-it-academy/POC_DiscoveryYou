@@ -1,0 +1,13 @@
+div{
+    width: 25%;
+    height: 320px;
+    box-shadow: 5px 5px 5px grey;
+}
+#nmConnect{
+    font-size: 2em;
+    border-radius: 180px;
+    color: white ;
+    background-color: #007CBA;
+    width: 50%;
+    text-align: center;
+}
