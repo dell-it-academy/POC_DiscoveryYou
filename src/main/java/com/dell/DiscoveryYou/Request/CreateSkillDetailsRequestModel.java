@@ -1,10 +1,9 @@
-package com.dell.DiscoveryYou.Requests;
+package com.dell.DiscoveryYou.Request;
 
 import com.dell.DiscoveryYou.Entity.User;
 import com.dell.DiscoveryYou.Utility.ReturnMessages;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 

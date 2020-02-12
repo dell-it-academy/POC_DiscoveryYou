@@ -1,10 +1,8 @@
 package com.dell.DiscoveryYou.Controller;
 
-import com.dell.DiscoveryYou.Entity.Interest;
 import com.dell.DiscoveryYou.Entity.User;
 import com.dell.DiscoveryYou.Exception.*;
 import com.dell.DiscoveryYou.Requests.CreateUserDetailsRequestModel;
-import com.dell.DiscoveryYou.Service.InterestService;
 import com.dell.DiscoveryYou.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 
@@ -41,7 +38,7 @@ public class UserController {
         }
     )
     public ResponseEntity<User> getUserByBadge(@PathVariable String badge){
-        User returnValue = userService.getUsersByBadge(badge);
+        User returnValue = userService.getUserByBadge(badge);
 
         if(returnValue == null)
             return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
@@ -50,7 +47,6 @@ public class UserController {
 
     }
 
-    //
     @PostMapping(
         consumes = {
             MediaType.APPLICATION_JSON_VALUE,
@@ -63,7 +59,7 @@ public class UserController {
     )
     public ResponseEntity createUser(@Valid @RequestBody CreateUserDetailsRequestModel userDetails){
         User returnValue = userService.createUser(userDetails);
-        if(returnValue != null)
+        if (returnValue != null)
             return new ResponseEntity(returnValue, HttpStatus.CREATED);
         return new ResponseEntity(HttpStatus.I_AM_A_TEAPOT);
     }
@@ -88,7 +84,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("disassociate/interest")
+    @PutMapping("/disassociate/interest")
     public ResponseEntity<String> disassociateInterestFromUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String interestName) throws UserNotFound, UserDoesNotHaveInterest {
         boolean result = userService.disassociateInterestFromUser(userBadge, interestName);
         if (result) {
@@ -98,7 +94,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("disassociate/skill")
+    @PutMapping("/disassociate/skill")
     public ResponseEntity<String> disassociateSkillFromUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String skillName) throws UserNotFound, UserDoesNotHaveSkill {
         boolean result = userService.disassociateSkillFromUser(userBadge, skillName);
         if (result) {
