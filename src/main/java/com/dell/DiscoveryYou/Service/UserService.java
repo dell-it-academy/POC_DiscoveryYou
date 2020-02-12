@@ -5,7 +5,6 @@ import com.dell.DiscoveryYou.Entity.Skill;
 import com.dell.DiscoveryYou.Entity.User;
 import com.dell.DiscoveryYou.Exception.*;
 import com.dell.DiscoveryYou.Repository.InterestRepository;
-import com.dell.DiscoveryYou.Repository.SkillRepository;
 import com.dell.DiscoveryYou.Repository.UserRepository;
 import com.dell.DiscoveryYou.Requests.CreateUserDetailsRequestModel;
 import com.dell.DiscoveryYou.Response.UserMatchDTO;

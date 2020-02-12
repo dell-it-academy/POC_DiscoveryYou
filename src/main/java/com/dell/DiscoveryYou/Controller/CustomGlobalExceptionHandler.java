@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = { UserNotFound.class, UserAlreadyHasInterest.class, UserAlreadyHasSkill.class, UserDoesNotHaveInterest.class, UserDoesNotHaveSkill.class })
+    @ExceptionHandler(value = { Exception.class })
     protected ResponseEntity<Object> handleException(RuntimeException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).header("message", ex.getMessage()).build();
     }
