@@ -1,0 +1,7 @@
+#wrapper{
+    margin:0 auto;
+    width: 85vw;
+    height:100vh;
+    padding: 10px;
+    box-sizing: border-box;
+}
