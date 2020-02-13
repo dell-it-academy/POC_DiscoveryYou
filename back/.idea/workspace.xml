@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ab496b7f-35e0-46e0-95fd-cefcb4b57b68" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/InterestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/InterestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/SkillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/SkillService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +82,7 @@
       <recent name="C:\Users\User\Desktop\POC_DiscoveryYou\Back" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DiscoveryYouApplication">
+  <component name="RunManager" selected="Gradle.back [bootRun]">
     <configuration name="DiscoveryYouApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.dell.DiscoveryYou.DiscoveryYouApplication" />
       <module name="DiscoveryYou.main" />
@@ -115,6 +113,25 @@
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="back [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="bootRun" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="DiscoveryYouApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="DiscoveryYou.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.dell.DiscoveryYou.DiscoveryYouApplication" />
@@ -124,6 +141,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.back [bootRun]" />
         <item itemvalue="Application.DiscoveryYouApplication" />
       </list>
     </recent_temporary>
@@ -153,25 +171,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581555393942" />
-    <state width="1323" height="136" key="GridCell.Tab.0.bottom" timestamp="1581626209455">
+    <state width="1323" height="136" key="GridCell.Tab.0.bottom" timestamp="1581628202983">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="136" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1581626209455" />
+    <state width="1323" height="136" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1581628202983" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1581562886908" />
-    <state width="1323" height="136" key="GridCell.Tab.0.center" timestamp="1581626209455">
+    <state width="1323" height="136" key="GridCell.Tab.0.center" timestamp="1581628202983">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="136" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1581626209455" />
+    <state width="1323" height="136" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1581628202983" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1581562886908" />
-    <state width="1323" height="136" key="GridCell.Tab.0.left" timestamp="1581626209455">
+    <state width="1323" height="136" key="GridCell.Tab.0.left" timestamp="1581628202983">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="136" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1581626209455" />
+    <state width="1323" height="136" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1581628202983" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1581562886908" />
-    <state width="1323" height="136" key="GridCell.Tab.0.right" timestamp="1581626209455">
+    <state width="1323" height="136" key="GridCell.Tab.0.right" timestamp="1581628202983">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="136" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1581626209455" />
+    <state width="1323" height="136" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1581628202983" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1581562886908" />
     <state x="184" y="92" key="MergeDialog" timestamp="1581562308281">
       <screen x="0" y="0" width="1920" height="1040" />
