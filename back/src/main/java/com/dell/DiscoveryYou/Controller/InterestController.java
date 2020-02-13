@@ -8,8 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("/interests") // http://localhost:8080/interests
@@ -19,9 +19,9 @@ public class InterestController {
     InterestService interestService;
 
     @GetMapping
-    public String getInterests(@RequestParam(value="page",  defaultValue  = "1") int page,
-                               @RequestParam(value="limit", defaultValue = "50") int limit){
-        return interestService.findAll().toString();
+    public String getInterests(@RequestParam(value="page",  defaultValue  = "1") int startPage,
+                               @RequestParam(value="limit", defaultValue = "50") int pageOffset){
+        return interestService.findAll(startPage, pageOffset).toString();
     }
 
     @GetMapping(path ="/{name}",
@@ -34,17 +34,22 @@ public class InterestController {
                     MediaType.APPLICATION_XML_VALUE
             }
     )
-    public ResponseEntity<Interest> getInterestByName(@PathVariable String name){
+
+    public ResponseEntity<Interest> getInterestByName(@PathVariable String name) {
         Interest returnValue = interestService.getInterestByName(name);
-
-        if(returnValue == null)
-            return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
-
-        return new ResponseEntity<>(returnValue, HttpStatus.OK);
-
+        if (returnValue == null)
+            return new ResponseEntity(HttpStatus.I_AM_A_TEAPOT);
+        return new ResponseEntity(returnValue, HttpStatus.OK);
     }
 
-    //
+//    @GetMapping("/user/{userBadge}")
+//    public ResponseEntity<Interest> getInterestByUser(@PathVariable String userBadge) {
+//        List<Interest> returnValue = interestService.getInterestsByUser(userBadge);
+//        if (returnValue == null)
+//            return new ResponseEntity(HttpStatus.I_AM_A_TEAPOT);
+//        return new ResponseEntity(returnValue, HttpStatus.OK);
+//    }
+
     @PostMapping(
             consumes = {
                     MediaType.APPLICATION_JSON_VALUE,
@@ -55,11 +60,10 @@ public class InterestController {
                     MediaType.APPLICATION_XML_VALUE
             }
     )
-    public ResponseEntity createInterest(@Valid @RequestBody CreateInterestDetailsRequestModel interestDetails){
+    public ResponseEntity createInterest(@Valid @RequestBody CreateInterestDetailsRequestModel interestDetails) {
         Interest returnValue = interestService.createInterest(interestDetails);
-        if(returnValue == null)
+        if (returnValue == null)
             return new ResponseEntity(HttpStatus.I_AM_A_TEAPOT);
-
         return new ResponseEntity(returnValue, HttpStatus.CREATED);
     }
 }

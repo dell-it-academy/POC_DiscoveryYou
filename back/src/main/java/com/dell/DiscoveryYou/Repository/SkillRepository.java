@@ -2,6 +2,7 @@ package com.dell.DiscoveryYou.Repository;
 
 import com.dell.DiscoveryYou.Entity.Skill;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.swing.text.html.Option;
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface SkillRepository extends CrudRepository<Skill, Long> {
+public interface SkillRepository extends PagingAndSortingRepository<Skill, Long> {
 
     /**
      * Finds skill by its ID.

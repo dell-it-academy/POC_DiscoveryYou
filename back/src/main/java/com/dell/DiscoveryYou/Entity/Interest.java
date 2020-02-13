@@ -17,7 +17,7 @@ public class Interest {
     @NotBlank(message = ReturnMessages.NAME_NOT_BLANK)
     private String name;
 
-    @OneToMany(mappedBy = "interests")
+    @OneToMany()
     private List<User> users;
 
     public void setId(Long id) {
