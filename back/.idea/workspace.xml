@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ab496b7f-35e0-46e0-95fd-cefcb4b57b68" name="Default Changelist" comment="" />
+    <list default="true" id="ab496b7f-35e0-46e0-95fd-cefcb4b57b68" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/InterestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/InterestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/SkillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/SkillService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,6 +75,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
   <component name="RecentsManager">
@@ -148,21 +153,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581555393942" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1581562886908">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1323" height="136" key="GridCell.Tab.0.bottom" timestamp="1581626209455">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="136" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1581626209455" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1581562886908" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1581562886908">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1323" height="136" key="GridCell.Tab.0.center" timestamp="1581626209455">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="136" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1581626209455" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1581562886908" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1581562886908">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1323" height="136" key="GridCell.Tab.0.left" timestamp="1581626209455">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="136" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1581626209455" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1581562886908" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1581562886908">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1323" height="136" key="GridCell.Tab.0.right" timestamp="1581626209455">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="136" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1581626209455" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1581562886908" />
     <state x="184" y="92" key="MergeDialog" timestamp="1581562308281">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -172,9 +181,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="672" y="237" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581562308285" />
-    <state x="440" y="95" key="SettingsEditor" timestamp="1581561641821">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="313" y="14" key="SettingsEditor" timestamp="1581626362410">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="313" y="14" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1581626362410" />
     <state x="440" y="95" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1581561641821" />
     <state x="681" y="261" width="540" height="524" key="StructurePopup" timestamp="1581274128854">
       <screen x="0" y="0" width="1920" height="1040" />

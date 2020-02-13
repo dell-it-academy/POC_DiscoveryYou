@@ -31,14 +31,19 @@ public class InterestService {
     @Transactional
     public Interest createInterest(CreateInterestDetailsRequestModel interest) {
         Interest returnValue = interests.get(interest.getName());
+
         if (returnValue == null) {
             returnValue = this.interestRepository.findByName(interest.getName()).orElse(null);
+            if (returnValue == null) {
+                returnValue = new Interest(interest.getName());
+                returnValue.setName(interest.getName());
+            }
         } else {
-            returnValue = new Interest(interest.getName());
-            returnValue.setName(interest.getName());
-            interestRepository.save(returnValue);
+            return returnValue;
         }
-        interests.put(returnValue.getName(), returnValue);
+
+            interestRepository.save(returnValue);
+            interests.put(returnValue.getName(), returnValue);
         return returnValue;
     }
 
