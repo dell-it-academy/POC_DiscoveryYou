@@ -61,7 +61,7 @@ public class UserService {
 
     @Transactional
     public boolean deleteUser(String userBadge) throws UserNotFound {
-        User user = getUser(userBadge);
+        User user = getUserByBadge(userBadge);
         if (user == null)
             throw new UserNotFound("User with badge " + userBadge + " not found");
         user.getInterests().forEach(interest -> user.removeInterest(interest));
@@ -80,7 +80,7 @@ public class UserService {
 
     @Transactional
     public boolean associateInterestToUser(String userBadge, String interestName) throws UserNotFound, UserAlreadyHasInterest {
-        User user = this.getUser(userBadge);
+        User user = this.getUserByBadge(userBadge);
         if (user == null)
             throw new UserNotFound("User with badge " + userBadge + " not found");
         if (user.getInterests().stream().map(interest -> interest.getName()).collect(Collectors.toList()).contains(interestName))
@@ -94,7 +94,7 @@ public class UserService {
 
     @Transactional
     public boolean associateSkillToUser(String userBadge, String skillName) throws UserNotFound, UserAlreadyHasSkill {
-        User user = this.getUser(userBadge);
+        User user = this.getUserByBadge(userBadge);
         if (user == null)
             throw new UserNotFound("User with badge " + userBadge + " not found");
         if (user.getSkills().stream().map(skill -> skill.getName()).collect(Collectors.toList()).contains(skillName))
@@ -108,7 +108,7 @@ public class UserService {
 
     @Transactional
     public boolean disassociateInterestFromUser(String userBadge, String interestName) throws UserNotFound, UserDoesNotHaveInterest {
-        User user = this.getUser(userBadge);
+        User user = this.getUserByBadge(userBadge);
         if (user == null)
             throw new UserNotFound("User with badge " + userBadge + " not found");
         if (!user.getInterests().stream().map(interest -> interest.getName()).collect(Collectors.toList()).contains(interestName))
@@ -120,7 +120,7 @@ public class UserService {
 
     @Transactional
     public boolean disassociateSkillFromUser(String userBadge, String skillName) throws UserNotFound, UserDoesNotHaveSkill {
-        User user = this.getUser(userBadge);
+        User user = this.getUserByBadge(userBadge);
         if (user == null)
             throw new UserNotFound("User with badge " + userBadge + " not found");
         if (!user.getSkills().stream().map(skill -> skill.getName()).collect(Collectors.toList()).contains(skillName))
@@ -130,7 +130,7 @@ public class UserService {
         return userRepository.save(user) instanceof User;
     }
 
-    private User getUser(String userBadge) {
+    public User getUserByBadge(String userBadge) {
         Optional<User> userOptional = userRepository.findByBadge(userBadge);
         return userOptional.orElse(null);
     }

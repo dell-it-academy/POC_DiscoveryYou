@@ -15,7 +15,7 @@ public class Skill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "skills")
+    @OneToMany()
     private List<User> users;
 
     @NotBlank(message = ReturnMessages.NAME_NOT_BLANK)
