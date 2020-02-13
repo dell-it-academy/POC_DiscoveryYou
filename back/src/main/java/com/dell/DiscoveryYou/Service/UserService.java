@@ -12,6 +12,8 @@ import com.dell.DiscoveryYou.Util.UserUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.validation.Valid;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -44,18 +46,23 @@ public class UserService {
     }
 
     @Transactional
-    public User createUser(CreateUserDetailsRequestModel user) {
+    public User createUser(@Valid CreateUserDetailsRequestModel user) {
         User returnValue = users.get(user.getBadge());
+
         if (returnValue == null) {
             returnValue = this.userRepository.findByBadge(user.getBadge()).orElse(null);
+            if(returnValue == null) {
+                returnValue = new User();
+                returnValue.setFirstName(user.getFirstName());
+                returnValue.setLastName(user.getLastName());
+                returnValue.setBadge(user.getBadge());
+            }
         } else {
-            returnValue = new User();
-            returnValue.setFirstName(user.getFirstName());
-            returnValue.setLastName(user.getLastName());
-            returnValue.setBadge(user.getBadge());
-            userRepository.save(returnValue);
+            return returnValue;
         }
-        users.put(returnValue.getBadge(), returnValue);
+
+            userRepository.save(returnValue);
+            users.put(returnValue.getBadge(), returnValue);
         return returnValue;
     }
 
