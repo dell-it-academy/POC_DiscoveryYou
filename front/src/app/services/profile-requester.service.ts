@@ -4,11 +4,14 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProfileRequesterService {
-  private standardUrl = "/users";
+  private standardUrl = "http://localhost:8080/users/";
   constructor(private httpProfile:HttpClient) { }
 
   getProfile(badge:String){
     let headers = new HttpHeaders();
-    return this.httpProfile.get("${this.standardUrl}/${badge}" + badge,{headers});
+    headers.append("Accept","application/json");
+    headers.append("Content-Type","application/json");
+
+    return this.httpProfile.get(`${this.standardUrl}${badge}`,{headers});
   }
 }

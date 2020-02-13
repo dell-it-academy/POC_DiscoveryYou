@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-
+@CrossOrigin(origins = "localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/users") // http://localhost:8080/users
 public class UserController {
@@ -38,7 +38,7 @@ public class UserController {
         }
     )
     public ResponseEntity<User> getUserByBadge(@PathVariable String badge){
-        User returnValue = userService.getUserByBadge(badge);
+        User returnValue = userService.getUsersByBadge(badge);
 
         if(returnValue == null)
             return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);

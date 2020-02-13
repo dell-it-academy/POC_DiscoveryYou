@@ -31,14 +31,19 @@ public class SkillService {
     @Transactional
     public Skill createSkill(CreateSkillDetailsRequestModel skill) {
         Skill returnValue = skills.get(skill.getName());
+
         if (returnValue == null) {
             returnValue = this.skillRepository.findByName(skill.getName()).orElse(null);
+            if (returnValue == null) {
+                returnValue = new Skill(skill.getName());
+                returnValue.setName(skill.getName());
+            }
         } else {
-            returnValue = new Skill(skill.getName());
-            returnValue.setName(skill.getName());
-            skillRepository.save(returnValue);
+            return returnValue;
         }
-        skills.put(returnValue.getName(), returnValue);
+
+            skillRepository.save(returnValue);
+            skills.put(returnValue.getName(), returnValue);
         return returnValue;
     }
 
