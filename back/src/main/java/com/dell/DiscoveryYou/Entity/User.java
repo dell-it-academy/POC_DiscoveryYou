@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "USERS", indexes = { @Index(name = "badgeIndex", columnList = "badge") })
 public class User {
 
     @Id
@@ -52,10 +52,12 @@ public class User {
 
     public void insertInterest(Interest interest){
         this.interests.add(interest);
+        interest.getUsers().add(this);
     }
 
     public void removeInterest(Interest interest){
         this.interests.remove(interest);
+        interest.getUsers().remove(this);
     }
 
     public void setInterests(List<Interest> interests) {
@@ -68,10 +70,12 @@ public class User {
 
     public void insertSkill(Skill skill){
         this.skills.add(skill);
+        skill.getUsers().add(this);
     }
 
     public void removeSkill(Skill skill){
         this.skills.remove(skill);
+        skill.getUsers().remove(this);
     }
 
     public void setSkills(List<Skill> skills) {
