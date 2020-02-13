@@ -1,7 +1,6 @@
 package com.dell.DiscoveryYou.Repository;
 
 import com.dell.DiscoveryYou.Entity.User;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -46,8 +45,4 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
      * @return List of users.
      */
     public List<User> findByFirstNameIgnoreCaseContaining(String searchName);
-
-    public List<User> findAll(Pageable p);
-
-    public List<User> findAll();
 }

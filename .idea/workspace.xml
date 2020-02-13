@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="094cec01-1530-42d2-af52-4e5d513665aa" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/dell/DiscoveryYou/Controller/UserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/dell/DiscoveryYou/DiscoveryYouApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/dell/DiscoveryYou/Entity/Interest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/dell/DiscoveryYou/Entity/Skill.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/dell/DiscoveryYou/Entity/UserRest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/dell/DiscoveryYou/Repository/InterestRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/dell/DiscoveryYou/Repository/SkillRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/dell/DiscoveryYou/Repository/UserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/dell/DiscoveryYou/Requests/CreateUserDetailsRequestModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/dell/DiscoveryYou/Requests/UpdateUserDetailsRequestModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/dell/DiscoveryYou/Requests/UserDetailsRequestModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/dell/DiscoveryYou/Service/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/dell/DiscoveryYou/Services/InterestService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/dell/DiscoveryYou/Services/SkillService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/dell/DiscoveryYou/Services/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/dell/DiscoveryYou/Utility/ReturnMessages.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/dell/DiscoveryYou/Utility/UserUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/test/com/dell/DiscoveryYou/DiscoveryYouApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/CustomGlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/InterestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/SkillController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/DiscoveryYouApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/CompositeKey/UserInterestKey.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/CompositeKey/UserSkillKey.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/Interest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/Skill.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/UserInterest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/UserSkill.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Exception/UserAlreadyHasInterest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Exception/UserAlreadyHasSkill.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Exception/UserDoesNotHaveInterest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Exception/UserDoesNotHaveSkill.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Exception/UserNotFound.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Repository/InterestRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Repository/SkillRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Request/CreateInterestDetailsRequestModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Request/CreateSkillDetailsRequestModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Request/CreateUserDetailsRequestModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Request/UserDetailsRequestModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Response/UserMatchDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/InterestService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/SkillService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Util/UserUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Utility/ReturnMessages.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dell/DiscoveryYou/DiscoveryYouApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1XjZ3tN6cjcktl3aggv0jNd0U2u" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="show.unlinked.gradle.project.popup" value="true" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="094cec01-1530-42d2-af52-4e5d513665aa" name="Default Changelist" comment="" />
+      <created>1581561267963</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581561267963</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="440" y="95" key="SettingsEditor" timestamp="1581561314507">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="95" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1581561314507" />
+    <state x="656" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1581561446206">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="345" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581561446206" />
+  </component>
+</project>

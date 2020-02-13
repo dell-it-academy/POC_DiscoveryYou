@@ -25,7 +25,7 @@ public class UserService {
     private SkillService skillService;
     private UserUtils userUtils;
 
-    public UserService(UserRepository userRepository, InterestRepository interestRepository, SkillService skillService, UserUtils userutils, InterestService interestService) {
+    public UserService(UserRepository userRepository, SkillService skillService, UserUtils userutils, InterestService interestService) {
         this.users = new HashMap<String, User>();
         this.userRepository = userRepository;
         this.interestService = interestService;
@@ -74,8 +74,8 @@ public class UserService {
         return true;
     }
 
-    public List<User> findAll() {
-        return this.userRepository.findAll();
+    public List<User> findAll(int startPage, int pageOffset) {
+        return this.userRepository.findAll(PageRequest.of(startPage, pageOffset)).getContent();
     }
 
     @Transactional
