@@ -76,7 +76,7 @@ public class UserService {
 
     @Transactional
     public boolean deleteUser(String userBadge) throws UserNotFound {
-        User user = getUserByBadge(userBadge);
+        User user = getUsersByBadge(userBadge);
         if (user == null)
             throw new UserNotFound("User with badge " + userBadge + " not found");
         user.getInterests().forEach(interest -> user.removeInterest(interest));
@@ -102,10 +102,10 @@ public class UserService {
         return returnValue;
     }
 
-    public boolean associateInterestToUser(Long userId, Long interestId) {
-        Interest interest = getInterest(interestId);
+    public boolean associateInterestToUser(String userBadge, String interestName) {
+        Interest interest = getInterest(interestName);
         if (interest != null) {
-            User user = getUser(userId);
+            User user = getUser(userBadge);
             if (user != null) {
                 user.insertInterest(interest);
                 userRepository.save(user);
@@ -115,10 +115,10 @@ public class UserService {
         return false;
     }
 
-    public boolean associateSkillToUser(Long userId, Long skillId) {
-        Skill skill = getSkill(skillId);
+    public boolean associateSkillToUser(String userBadge, String skillName) {
+        Skill skill = getSkill(skillName);
         if (skill != null) {
-            User user = getUser(userId);
+            User user = getUser(userBadge);
             if (user != null) {
                 user.insertSkill(skill);
                 userRepository.save(user);
@@ -128,10 +128,10 @@ public class UserService {
         return false;
     }
 
-    public boolean disassociateInterestFromUser(Long userId, Long interestId) {
-        Interest interest = getInterest(interestId);
+    public boolean disassociateInterestFromUser(String userBadge, String interestName) {
+        Interest interest = getInterest(interestName);
         if (interest != null) {
-            User user = getUser(userId);
+            User user = getUser(userBadge);
             if (user != null) {
                 user.removeInterest(interest);
                 userRepository.save(user);
@@ -141,10 +141,10 @@ public class UserService {
         return false;
     }
 
-    public boolean disassociateSkillFromUser(Long userId, Long skillId) {
-        Skill skill = getSkill(skillId);
+    public boolean disassociateSkillFromUser(String userBadge, String skillName) {
+        Skill skill = getSkill(skillName);
         if (skill != null) {
-            User user = getUser(userId);
+            User user = getUser(userBadge);
             if (user != null) {
                 user.removeSkill(skill);
                 userRepository.save(user);
@@ -154,13 +154,13 @@ public class UserService {
         return false;
     }
 
-    private User getUser(Long userId) {
-        Optional<User> userOptional = userRepository.findById(userId);
+    private User getUser(String userBadge) {
+        Optional<User> userOptional = userRepository.findByBadge(userBadge);
         return userOptional.orElse(null);
     }
 
-    private Interest getInterest(Long interestId) {
-        Optional<Interest> interestOptional = interestRepository.findById(interestId);
+    private Interest getInterest(Long interestName) {
+        Optional<Interest> interestOptional = interestRepository.findById(interestName);
         return interestOptional.orElse(null);
     }
 

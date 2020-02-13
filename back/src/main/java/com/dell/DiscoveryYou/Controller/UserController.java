@@ -38,7 +38,7 @@ public class UserController {
         }
     )
     public ResponseEntity<User> getUserByBadge(@PathVariable String badge){
-        User returnValue = userService.getUserByBadge(badge);
+        User returnValue = userService.getUsersByBadge(badge);
 
         if(returnValue == null)
             return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
