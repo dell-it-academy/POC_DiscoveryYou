@@ -1,4 +1,4 @@
-package com.dell.DiscoveryYou.Requests;
+package com.dell.DiscoveryYou.Request;
 
 import com.dell.DiscoveryYou.Utility.ReturnMessages;
 

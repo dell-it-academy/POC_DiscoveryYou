@@ -1,4 +1,4 @@
-package com.dell.DiscoveryYou.Requests;
+package com.dell.DiscoveryYou.Request;
 
 import javax.persistence.GeneratedValue;
 import javax.validation.constraints.Email;
