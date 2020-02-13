@@ -4,14 +4,11 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProfileRequesterService {
-  private standardUrl = "TYPEHERE";
+  private standardUrl = "/users";
   constructor(private httpProfile:HttpClient) { }
 
   getProfile(badge:String){
     let headers = new HttpHeaders();
-    /*
-      I need some backend guy here haha
-    */
-    return this.httpProfile.get(this.standardUrl,{headers});
+    return this.httpProfile.get("${this.standardUrl}/${badge}" + badge,{headers});
   }
 }
