@@ -1,6 +1,6 @@
 package com.dell.DiscoveryYou.Entity;
 
-import com.dell.DiscoveryYou.Utility.ReturnMessages;
+import com.dell.DiscoveryYou.Util.ReturnMessages;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

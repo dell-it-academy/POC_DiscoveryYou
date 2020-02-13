@@ -3,28 +3,25 @@ package com.dell.DiscoveryYou.Controller;
 import com.dell.DiscoveryYou.Entity.Skill;
 import com.dell.DiscoveryYou.Request.CreateSkillDetailsRequestModel;
 import com.dell.DiscoveryYou.Service.SkillService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import javax.validation.Valid;
-import java.util.List;
 
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/skills") // http://localhost:8080/Skills
 public class SkillController {
 
-    private SkillService skillService;
-
-    public SkillController(SkillService skillService) {
-        this.skillService = skillService;
-    }
+    @Autowired
+    SkillService skillService;
 
     @GetMapping
-    public List<Skill> getSkills(@RequestParam(value="page",  defaultValue  = "1") int startPage,
-                                 @RequestParam(value="limit", defaultValue = "50") int pageOffset){
-        return skillService.findAll(startPage, pageOffset);
+    public String getSkills(@RequestParam(value="page",  defaultValue  = "1") int page,
+                               @RequestParam(value="limit", defaultValue = "50") int limit){
+        return skillService.findAll().toString();
     }
 
     @GetMapping(path ="/{name}",
@@ -37,8 +34,8 @@ public class SkillController {
                     MediaType.APPLICATION_XML_VALUE
             }
     )
-    public ResponseEntity<Skill> getSkillByName(@PathVariable String skillName){
-        Skill returnValue = skillService.getSkillByName(skillName);
+    public ResponseEntity<Skill> getSkillByName(@PathVariable String name){
+        Skill returnValue = skillService.getInterestByName(name);
 
         if(returnValue == null)
             return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);

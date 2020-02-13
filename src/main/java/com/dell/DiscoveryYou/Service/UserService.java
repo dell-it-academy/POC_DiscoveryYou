@@ -6,7 +6,7 @@ import com.dell.DiscoveryYou.Entity.User;
 import com.dell.DiscoveryYou.Exception.*;
 import com.dell.DiscoveryYou.Repository.InterestRepository;
 import com.dell.DiscoveryYou.Repository.UserRepository;
-import com.dell.DiscoveryYou.Requests.CreateUserDetailsRequestModel;
+import com.dell.DiscoveryYou.Request.CreateUserDetailsRequestModel;
 import com.dell.DiscoveryYou.Response.UserMatchDTO;
 import com.dell.DiscoveryYou.Util.UserUtils;
 import org.springframework.data.domain.PageRequest;
