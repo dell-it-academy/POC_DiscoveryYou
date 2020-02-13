@@ -1,10 +1,12 @@
-package com.dell.DiscoveryYou.Request;
+package com.dell.DiscoveryYou.Requests;
 
+import javax.persistence.GeneratedValue;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.dell.DiscoveryYou.Util.ReturnMessages;
-import com.dell.DiscoveryYou.Util.UserUtils;
+import com.dell.DiscoveryYou.Utility.ReturnMessages;
+import com.dell.DiscoveryYou.Utility.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class CreateUserDetailsRequestModel {

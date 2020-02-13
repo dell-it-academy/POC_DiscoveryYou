@@ -1,6 +1,6 @@
-package com.dell.DiscoveryYou.Request;
+package com.dell.DiscoveryYou.Requests;
 
-import com.dell.DiscoveryYou.Util.ReturnMessages;
+import com.dell.DiscoveryYou.Utility.ReturnMessages;
 
 import javax.validation.constraints.NotBlank;
 

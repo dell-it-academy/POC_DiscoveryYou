@@ -1,4 +1,4 @@
-package com.dell.DiscoveryYou.Util;
+package com.dell.DiscoveryYou.Utility;
 
 public class ReturnMessages {
 
