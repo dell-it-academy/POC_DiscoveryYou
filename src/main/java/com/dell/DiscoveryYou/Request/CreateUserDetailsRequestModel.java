@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.dell.DiscoveryYou.Utility.ReturnMessages;
-import com.dell.DiscoveryYou.Utility.UserUtils;
+import com.dell.DiscoveryYou.Util.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class CreateUserDetailsRequestModel {

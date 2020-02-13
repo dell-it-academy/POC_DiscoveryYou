@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Entity
-@Table(name = "USERS", indexes = { @Index(name = "badgeIndex", columnList = "badge") })
+@Table(indexes = { @Index(name = "badgeIndex", columnList = "badge") })
 public class User {
 
     @Id
@@ -24,9 +24,9 @@ public class User {
     @Column(unique = true)
     private String badge;
 
-    @OneToMany(mappedBy = "USERS")
+    @OneToMany()
     private List<Interest> interests;
-    @OneToMany(mappedBy = "USERS")
+    @OneToMany()
     private List<Skill> skills;
 
     @Override

@@ -2,7 +2,7 @@ package com.dell.DiscoveryYou.Controller;
 
 import com.dell.DiscoveryYou.Entity.User;
 import com.dell.DiscoveryYou.Exception.*;
-import com.dell.DiscoveryYou.Requests.CreateUserDetailsRequestModel;
+import com.dell.DiscoveryYou.Request.CreateUserDetailsRequestModel;
 import com.dell.DiscoveryYou.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,9 +22,9 @@ public class UserController {
     UserService userService;
 
     @GetMapping
-    public String getUsers(@RequestParam(value="page",  defaultValue  = "1") int page,
-                           @RequestParam(value="limit", defaultValue = "50") int limit){
-        return userService.findAll().toString();
+    public String getUsers(@RequestParam(value="page",  defaultValue  = "1") int startPage,
+                           @RequestParam(value="limit", defaultValue = "50") int pageOffset){
+        return userService.findAll(startPage, pageOffset).toString();
     }
 
     @GetMapping(path ="/{badge}",
