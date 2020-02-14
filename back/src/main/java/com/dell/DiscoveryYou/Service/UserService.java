@@ -48,7 +48,6 @@ public class UserService {
     @Transactional
     public User createUser(@Valid CreateUserDetailsRequestModel user) {
         User returnValue = users.get(user.getBadge());
-
         if (returnValue == null) {
             returnValue = this.userRepository.findByBadge(user.getBadge()).orElse(null);
             if(returnValue == null) {
@@ -60,12 +59,28 @@ public class UserService {
         } else {
             return returnValue;
         }
-
-            userRepository.save(returnValue);
-            users.put(returnValue.getBadge(), returnValue);
+        userRepository.save(returnValue);
+        users.put(returnValue.getBadge(), returnValue);
         return returnValue;
     }
 
+//    @Transactional
+//    public User createUser(@Valid CreateUserDetailsRequestModel user) {
+//        User returnValue = users.get(user.getBadge());
+//        if (returnValue == null)
+//            returnValue = this.getUserByBadge(user.getBadge());
+//        if (returnValue == null) {
+//            returnValue = new User();
+//            returnValue.setFirstName(user.getFirstName());
+//            returnValue.setLastName(user.getLastName());
+//            returnValue.setBadge(user.getBadge());
+//            userRepository.save(returnValue);
+//            users.put(returnValue.getBadge(), returnValue);
+//        }
+//        return returnValue;
+//    }
+
+    // Todo: update usermap cache
     @Transactional
     public boolean deleteUser(String userBadge) throws UserNotFound {
         User user = getUserByBadge(userBadge);
@@ -85,6 +100,7 @@ public class UserService {
         return this.userRepository.findAll(PageRequest.of(startPage, pageOffset)).getContent();
     }
 
+    // Todo: update usermap cache
     @Transactional
     public boolean associateInterestToUser(String userBadge, String interestName) throws UserNotFound, UserAlreadyHasInterest {
         User user = this.getUserByBadge(userBadge);
@@ -99,6 +115,7 @@ public class UserService {
         return userRepository.save(user) instanceof User;
     }
 
+    // Todo: update usermap cache
     @Transactional
     public boolean associateSkillToUser(String userBadge, String skillName) throws UserNotFound, UserAlreadyHasSkill {
         User user = this.getUserByBadge(userBadge);
@@ -113,6 +130,7 @@ public class UserService {
         return userRepository.save(user) instanceof User;
     }
 
+    // Todo: update usermap cache
     @Transactional
     public boolean disassociateInterestFromUser(String userBadge, String interestName) throws UserNotFound, UserDoesNotHaveInterest {
         User user = this.getUserByBadge(userBadge);
@@ -125,6 +143,7 @@ public class UserService {
         return userRepository.save(user) instanceof User;
     }
 
+    // Todo: update usermap cache
     @Transactional
     public boolean disassociateSkillFromUser(String userBadge, String skillName) throws UserNotFound, UserDoesNotHaveSkill {
         User user = this.getUserByBadge(userBadge);
