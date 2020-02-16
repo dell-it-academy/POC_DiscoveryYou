@@ -45,4 +45,6 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
      * @return List of users.
      */
     public List<User> findByFirstNameIgnoreCaseContaining(String searchName);
+
+    List<User> findAll();
 }

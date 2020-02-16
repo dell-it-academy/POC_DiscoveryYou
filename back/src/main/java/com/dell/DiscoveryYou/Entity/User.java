@@ -1,19 +1,23 @@
 package com.dell.DiscoveryYou.Entity;
 
 import com.dell.DiscoveryYou.Utility.ReturnMessages;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+
 @Entity
 @Table(indexes = { @Index(name = "badgeIndex", columnList = "badge") })
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_gen")
+    @SequenceGenerator(name = "user_id_gen", sequenceName = "user_id_seq")
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
     @NotBlank(message = ReturnMessages.FIRST_NAME_NOT_BLANK)
@@ -23,10 +27,13 @@ public class User {
     @NotBlank(message = ReturnMessages.BADGE_NOT_BLANK)
     @Column(unique = true)
     private String badge;
-
-    @OneToMany()
+    @ManyToMany
+    @JsonIgnoreProperties("users")
+    @Cascade(CascadeType.ALL)
     private List<Interest> interests;
-    @OneToMany()
+    @ManyToMany
+    @JsonIgnoreProperties("users")
+    @Cascade(CascadeType.ALL)
     private List<Skill> skills;
 
     @Override
@@ -47,7 +54,7 @@ public class User {
     }
 
     public List<Interest> getInterests() {
-        return Collections.unmodifiableList(this.interests);
+        return this.interests;
     }
 
     public void insertInterest(Interest interest){

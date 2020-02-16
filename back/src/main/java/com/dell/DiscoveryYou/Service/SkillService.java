@@ -20,30 +20,30 @@ public class SkillService {
         this.skillRepository = skillrepository;
     }
 
+
     public List<Skill> findAll(int startPage, int pageOffset){
         return this.skillRepository.findAll(PageRequest.of(startPage, pageOffset)).getContent();
     }
 
-    public Skill getSkillByName(String name) {
-        return this.skillRepository.findByName(name).orElse(null);
+    public List<Skill> findAll() {
+        return this.skillRepository.findAll();
+    }
+
+    public Skill getSkillByName(String skillName) {
+        return this.skillRepository.findByName(skillName).orElse(null);
     }
 
     @Transactional
     public Skill createSkill(CreateSkillDetailsRequestModel skill) {
         Skill returnValue = skills.get(skill.getName());
-
-        if (returnValue == null) {
+        if (returnValue == null)
             returnValue = this.skillRepository.findByName(skill.getName()).orElse(null);
-            if (returnValue == null) {
-                returnValue = new Skill(skill.getName());
-                returnValue.setName(skill.getName());
-            }
-        } else {
-            return returnValue;
-        }
-
+        if (returnValue == null) {
+            returnValue = new Skill(skill.getName());
+            returnValue.setName(skill.getName());
             skillRepository.save(returnValue);
             skills.put(returnValue.getName(), returnValue);
+        }
         return returnValue;
     }
 
@@ -52,10 +52,10 @@ public class SkillService {
         Skill returnValue = skills.get(interestName);
         if (returnValue == null) {
             returnValue = this.getSkillByName(interestName);
-        } else {
-            returnValue = new Skill(interestName);
-            skillRepository.save(returnValue);
+            Optional.ofNullable(returnValue).ifPresent(skill -> skill.setId(null));
         }
+        if (returnValue == null)
+            returnValue = new Skill(interestName);
         skills.put(returnValue.getName(), returnValue);
         return returnValue;
     }

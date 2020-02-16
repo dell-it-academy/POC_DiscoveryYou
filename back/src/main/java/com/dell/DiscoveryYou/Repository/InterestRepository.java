@@ -28,4 +28,6 @@ public interface InterestRepository extends PagingAndSortingRepository<Interest,
      * @return interest if found, null otherwise.
      */
     Optional<Interest> findByName(String name);
+
+    List<Interest> findAll();
 }

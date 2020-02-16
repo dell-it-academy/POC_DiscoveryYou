@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ab496b7f-35e0-46e0-95fd-cefcb4b57b68" name="Default Changelist" comment="">
+    <list default="true" id="0a569f35-dff8-4ac6-99ac-ff35f5e25574" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Swagger/Swagger2Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/InterestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/InterestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/SkillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/SkillController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/CompositeKey/UserInterestKey.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/CompositeKey/UserSkillKey.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/Interest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/Interest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/Skill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/Skill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/UserInterest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/UserSkill.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Repository/InterestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Repository/InterestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/InterestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/InterestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/SkillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/SkillService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,40 +33,6 @@
       <ProjectState />
     </projectState>
   </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <task path="$PROJECT_DIR$">
-          <activation />
-        </task>
-        <projects_view>
-          <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="DiscoveryYou" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="DiscoveryYou" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="DiscoveryYou" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="application" type="c8890929:TasksNode$1" />
-              </path>
-            </expand>
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="POC_DiscoveryYou" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -59,31 +43,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1Xa7j1YvFnEID4Ga4QdEWPBknxq" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="1XtvoqOtmHEHOYAk5eCFhipHj4R" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\User\Desktop\POC_DiscoveryYou\back" />
-      <recent name="C:\Users\User\Desktop\POC_DiscoveryYou\Back" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Gradle.back [bootRun]">
+  <component name="RunManager">
     <configuration name="DiscoveryYouApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.dell.DiscoveryYou.DiscoveryYouApplication" />
       <module name="DiscoveryYou.main" />
@@ -97,52 +72,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list />
-        </option>
-        <option name="vmOptions" value="" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="back [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="bootRun" />
-          </list>
-        </option>
-        <option name="vmOptions" value="" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="DiscoveryYouApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="DiscoveryYou.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dell.DiscoveryYou.DiscoveryYouApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.back [bootRun]" />
         <item itemvalue="Application.DiscoveryYouApplication" />
       </list>
     </recent_temporary>
@@ -152,74 +83,46 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ab496b7f-35e0-46e0-95fd-cefcb4b57b68" name="Default Changelist" comment="" />
-      <created>1581272483269</created>
+      <changelist id="0a569f35-dff8-4ac6-99ac-ff35f5e25574" name="Default Changelist" comment="" />
+      <created>1581878382272</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1581272483269</updated>
+      <updated>1581878382272</updated>
     </task>
     <servers />
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
   <component name="WindowStateProjectService">
-    <state x="677" y="179" key="#DiscoveryYouApplication" timestamp="1581561662711">
+    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1581880187192">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="677" y="179" key="#DiscoveryYouApplication/0.0.1920.1040@0.0.1920.1040" timestamp="1581561662711" />
-    <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581555393942">
+    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1581880187192" />
+    <state width="1877" height="163" key="GridCell.Tab.0.bottom" timestamp="1581893803272">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="414" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581555393942" />
-    <state width="1323" height="136" key="GridCell.Tab.0.bottom" timestamp="1581628202983">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1323" height="136" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1581628202983" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1581562886908" />
-    <state width="1323" height="136" key="GridCell.Tab.0.center" timestamp="1581628202983">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1323" height="136" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1581628202983" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1581562886908" />
-    <state width="1323" height="136" key="GridCell.Tab.0.left" timestamp="1581628202983">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1323" height="136" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1581628202983" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1581562886908" />
-    <state width="1323" height="136" key="GridCell.Tab.0.right" timestamp="1581628202983">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1323" height="136" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1581628202983" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1581562886908" />
-    <state x="184" y="92" key="MergeDialog" timestamp="1581562308281">
+    <state width="1877" height="163" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1581893803272" />
+    <state width="1877" height="163" key="GridCell.Tab.0.center" timestamp="1581893803272">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="184" y="92" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581562308281" />
-    <state x="672" y="237" key="MultipleFileMergeDialog" timestamp="1581562308285">
+    <state width="1877" height="163" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1581893803272" />
+    <state width="1877" height="163" key="GridCell.Tab.0.left" timestamp="1581893803272">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="672" y="237" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581562308285" />
-    <state x="313" y="14" key="SettingsEditor" timestamp="1581626362410">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="313" y="14" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1581626362410" />
-    <state x="440" y="95" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1581561641821" />
-    <state x="681" y="261" width="540" height="524" key="StructurePopup" timestamp="1581274128854">
+    <state width="1877" height="163" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1581893803272" />
+    <state width="1877" height="163" key="GridCell.Tab.0.right" timestamp="1581893803272">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="681" y="261" width="540" height="524" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1581274128854" />
-    <state x="661" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1581561615933">
+    <state width="1877" height="163" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1581893803272" />
+    <state x="440" y="95" key="SettingsEditor" timestamp="1581880181344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="661" y="345" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581561615933" />
-    <state x="959" y="146" width="607" height="804" key="find.popup" timestamp="1581467088252">
+    <state x="440" y="95" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1581880181344" />
+    <state x="681" y="261" width="540" height="524" key="StructurePopup" timestamp="1581886138966">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="959" y="146" width="607" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1581467088252" />
-    <state x="342" y="141" key="new project wizard" timestamp="1581554988397">
+    <state x="681" y="261" width="540" height="524" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1581886138966" />
+    <state x="656" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1581884268408">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="342" y="141" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1581554988397" />
+    <state x="656" y="345" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581884268408" />
   </component>
 </project>

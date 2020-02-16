@@ -1,23 +1,31 @@
 package com.dell.DiscoveryYou.Entity;
 
 import com.dell.DiscoveryYou.Utility.ReturnMessages;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 public class Interest {
 
+    public Interest() {}
+
+    public Interest(String name) {
+        this.name = name;
+        this.users = new ArrayList<User>();
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "interest_id_gen")
+    @SequenceGenerator(name = "interest_id_gen",sequenceName = "interest_id_seq")
     private Long id;
 
     @NotBlank(message = ReturnMessages.NAME_NOT_BLANK)
     private String name;
 
-    @OneToMany()
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<User> users;
 
     public void setId(Long id) {
@@ -28,18 +36,12 @@ public class Interest {
         this.name = name;
     }
 
-    public List<User> getUsers() {
-        return Collections.unmodifiableList(users);
-    }
+    public List<User> getUsers() { return this.users; }
 
     public void setUsers(List<User> users) {
         this.users = users;
     }
 
-
-    public Interest(String name) {
-        this.name = name;
-    }
 
     public String getName() {
         return this.name;
@@ -57,4 +59,5 @@ public class Interest {
                 ", users=" + users +
                 '}';
     }
+
 }

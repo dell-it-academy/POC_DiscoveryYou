@@ -45,40 +45,40 @@ public class UserService {
         return relatedUsers;
     }
 
-    @Transactional
-    public User createUser(@Valid CreateUserDetailsRequestModel user) {
-        User returnValue = users.get(user.getBadge());
-        if (returnValue == null) {
-            returnValue = this.userRepository.findByBadge(user.getBadge()).orElse(null);
-            if(returnValue == null) {
-                returnValue = new User();
-                returnValue.setFirstName(user.getFirstName());
-                returnValue.setLastName(user.getLastName());
-                returnValue.setBadge(user.getBadge());
-            }
-        } else {
-            return returnValue;
-        }
-        userRepository.save(returnValue);
-        users.put(returnValue.getBadge(), returnValue);
-        return returnValue;
-    }
-
 //    @Transactional
 //    public User createUser(@Valid CreateUserDetailsRequestModel user) {
 //        User returnValue = users.get(user.getBadge());
-//        if (returnValue == null)
-//            returnValue = this.getUserByBadge(user.getBadge());
 //        if (returnValue == null) {
-//            returnValue = new User();
-//            returnValue.setFirstName(user.getFirstName());
-//            returnValue.setLastName(user.getLastName());
-//            returnValue.setBadge(user.getBadge());
-//            userRepository.save(returnValue);
-//            users.put(returnValue.getBadge(), returnValue);
+//            returnValue = this.userRepository.findByBadge(user.getBadge()).orElse(null);
+//            if(returnValue == null) {
+//                returnValue = new User();
+//                returnValue.setFirstName(user.getFirstName());
+//                returnValue.setLastName(user.getLastName());
+//                returnValue.setBadge(user.getBadge());
+//                userRepository.save(returnValue);
+//                users.put(returnValue.getBadge(), returnValue);
+//            }
+//        } else {
+//            return returnValue;
 //        }
 //        return returnValue;
 //    }
+
+    @Transactional
+    public User createUser(@Valid CreateUserDetailsRequestModel user) {
+        User returnValue = users.get(user.getBadge());
+        if (returnValue == null)
+            returnValue = this.getUserByBadge(user.getBadge());
+        if (returnValue == null) {
+            returnValue = new User();
+            returnValue.setFirstName(user.getFirstName());
+            returnValue.setLastName(user.getLastName());
+            returnValue.setBadge(user.getBadge());
+            userRepository.save(returnValue);
+            users.put(returnValue.getBadge(), returnValue);
+        }
+        return returnValue;
+    }
 
     // Todo: update usermap cache
     @Transactional
@@ -100,9 +100,13 @@ public class UserService {
         return this.userRepository.findAll(PageRequest.of(startPage, pageOffset)).getContent();
     }
 
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
     // Todo: update usermap cache
     @Transactional
-    public boolean associateInterestToUser(String userBadge, String interestName) throws UserNotFound, UserAlreadyHasInterest {
+    public User associateInterestToUser(String userBadge, String interestName) throws UserNotFound, UserAlreadyHasInterest {
         User user = this.getUserByBadge(userBadge);
         if (user == null)
             throw new UserNotFound("User with badge " + userBadge + " not found");
@@ -112,12 +116,12 @@ public class UserService {
         if (interest == null)
             interest = interestService.createInterest(interestName);
         user.insertInterest(interest);
-        return userRepository.save(user) instanceof User;
+        return userRepository.save(user);
     }
 
     // Todo: update usermap cache
     @Transactional
-    public boolean associateSkillToUser(String userBadge, String skillName) throws UserNotFound, UserAlreadyHasSkill {
+    public User associateSkillToUser(String userBadge, String skillName) throws UserNotFound, UserAlreadyHasSkill {
         User user = this.getUserByBadge(userBadge);
         if (user == null)
             throw new UserNotFound("User with badge " + userBadge + " not found");
@@ -127,12 +131,12 @@ public class UserService {
         if (skill == null)
             skill = skillService.createSkill(skillName);
         user.insertSkill(skill);
-        return userRepository.save(user) instanceof User;
+        return userRepository.save(user);
     }
 
     // Todo: update usermap cache
     @Transactional
-    public boolean disassociateInterestFromUser(String userBadge, String interestName) throws UserNotFound, UserDoesNotHaveInterest {
+    public User disassociateInterestFromUser(String userBadge, String interestName) throws UserNotFound, UserDoesNotHaveInterest {
         User user = this.getUserByBadge(userBadge);
         if (user == null)
             throw new UserNotFound("User with badge " + userBadge + " not found");
@@ -140,12 +144,12 @@ public class UserService {
             throw new UserDoesNotHaveInterest("user with badge " + userBadge + " does not have interest \"" + interestName + "\"");
         Interest interest = interestService.getInterestByName(interestName);
         user.removeInterest(interest);
-        return userRepository.save(user) instanceof User;
+        return userRepository.save(user);
     }
 
     // Todo: update usermap cache
     @Transactional
-    public boolean disassociateSkillFromUser(String userBadge, String skillName) throws UserNotFound, UserDoesNotHaveSkill {
+    public User disassociateSkillFromUser(String userBadge, String skillName) throws UserNotFound, UserDoesNotHaveSkill {
         User user = this.getUserByBadge(userBadge);
         if (user == null)
             throw new UserNotFound("User with badge " + userBadge + " not found");
@@ -153,7 +157,7 @@ public class UserService {
             throw new UserDoesNotHaveSkill("user with badge " + userBadge + " does not have interest \"" + skillName + "\"");
         Skill skill = skillService.getSkillByName(skillName);
         user.removeSkill(skill);
-        return userRepository.save(user) instanceof User;
+        return userRepository.save(user);
     }
 
     public User getUserByBadge(String userBadge) {
