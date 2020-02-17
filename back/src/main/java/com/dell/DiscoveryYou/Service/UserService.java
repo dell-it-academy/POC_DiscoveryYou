@@ -27,6 +27,7 @@ public class UserService {
     private SkillService skillService;
     private UserUtils userUtils;
 
+    
     public UserService(UserRepository userRepository, SkillService skillService, UserUtils userutils, InterestService interestService) {
         this.users = new HashMap<String, User>();
         this.userRepository = userRepository;
@@ -35,34 +36,25 @@ public class UserService {
         this.userUtils = userutils;
     }
 
-    public List<User> getUsersWithMatchingPercentage(String userBadge, int startPage, int pageOffset) throws UserNotFound {
+    public List<UserMatchDTO> getUsersWithMatchingPercentage(String userBadge, int startPage, int pageOffset) throws UserNotFound {
         User appUser = userRepository.findByBadge(userBadge).orElse(null);
         if (appUser == null)
             throw new UserNotFound("User with badge " + userBadge + " not found");
         List<User> relatedUsers = userRepository.findAll(PageRequest.of(startPage, pageOffset)).getContent();
         List<UserMatchDTO> users = new ArrayList<>();
         relatedUsers.forEach((relUser) -> users.add(userUtils.calculateMatchingPercentage(appUser, relUser)));
-        return relatedUsers;
+        return users;
     }
 
-//    @Transactional
-//    public User createUser(@Valid CreateUserDetailsRequestModel user) {
-//        User returnValue = users.get(user.getBadge());
-//        if (returnValue == null) {
-//            returnValue = this.userRepository.findByBadge(user.getBadge()).orElse(null);
-//            if(returnValue == null) {
-//                returnValue = new User();
-//                returnValue.setFirstName(user.getFirstName());
-//                returnValue.setLastName(user.getLastName());
-//                returnValue.setBadge(user.getBadge());
-//                userRepository.save(returnValue);
-//                users.put(returnValue.getBadge(), returnValue);
-//            }
-//        } else {
-//            return returnValue;
-//        }
-//        return returnValue;
-//    }
+    public List<UserMatchDTO> getUsersWithMatchingPercentage(String userBadge) throws UserNotFound {
+        User appUser = userRepository.findByBadge(userBadge).orElse(null);
+        if (appUser == null)
+            throw new UserNotFound("User with badge " + userBadge + " not found");
+        List<User> relatedUsers = userRepository.findAll();
+        List<UserMatchDTO> users = new ArrayList<>();
+        relatedUsers.forEach((relUser) -> users.add(userUtils.calculateMatchingPercentage(appUser, relUser)));
+        return users;
+    }
 
     @Transactional
     public User createUser(@Valid CreateUserDetailsRequestModel user) throws UserAlreadyExists{

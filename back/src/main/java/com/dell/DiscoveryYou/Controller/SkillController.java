@@ -4,6 +4,7 @@ import com.dell.DiscoveryYou.Entity.Skill;
 import com.dell.DiscoveryYou.Entity.User;
 import com.dell.DiscoveryYou.Request.CreateSkillDetailsRequestModel;
 import com.dell.DiscoveryYou.Service.SkillService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +18,9 @@ import java.util.Optional;
 @RequestMapping("/skills") // http://localhost:8080/Skills
 public class SkillController {
 
+    @Autowired
     private SkillService skillService;
 
-    public SkillController(SkillService skillService) {
-        this.skillService = skillService;
-    }
 
     @GetMapping
     public ResponseEntity<List<Skill>> getUsers(@RequestParam(value="page",  defaultValue  = "1", required = false) int startPage,

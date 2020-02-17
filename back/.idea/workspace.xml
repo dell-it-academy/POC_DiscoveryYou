@@ -2,15 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a569f35-dff8-4ac6-99ac-ff35f5e25574" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Exception/UserAlreadyExists.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/CustomGlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/CustomGlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/InterestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/InterestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/SkillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/SkillController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/Interest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/Interest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/Skill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/Skill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Exception/CustomGlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Response/UserMatchDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Response/UserMatchDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Util/UserUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dell/DiscoveryYou/Util/UserUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,22 +83,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1581880187192" />
-    <state width="1877" height="163" key="GridCell.Tab.0.bottom" timestamp="1581901488786">
+    <state width="1877" height="163" key="GridCell.Tab.0.bottom" timestamp="1581903910257">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="163" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1581901488786" />
-    <state width="1877" height="163" key="GridCell.Tab.0.center" timestamp="1581901488786">
+    <state width="1877" height="163" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1581903910257" />
+    <state width="1877" height="163" key="GridCell.Tab.0.center" timestamp="1581903910257">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="163" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1581901488786" />
-    <state width="1877" height="163" key="GridCell.Tab.0.left" timestamp="1581901488786">
+    <state width="1877" height="163" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1581903910257" />
+    <state width="1877" height="163" key="GridCell.Tab.0.left" timestamp="1581903910257">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="163" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1581901488786" />
-    <state width="1877" height="163" key="GridCell.Tab.0.right" timestamp="1581901488786">
+    <state width="1877" height="163" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1581903910257" />
+    <state width="1877" height="163" key="GridCell.Tab.0.right" timestamp="1581903910257">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="163" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1581901488786" />
+    <state width="1877" height="163" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1581903910257" />
     <state x="440" y="95" key="SettingsEditor" timestamp="1581880181344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

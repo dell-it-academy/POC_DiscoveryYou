@@ -3,6 +3,7 @@ package com.dell.DiscoveryYou.Controller;
 import com.dell.DiscoveryYou.Entity.User;
 import com.dell.DiscoveryYou.Exception.*;
 import com.dell.DiscoveryYou.Request.CreateUserDetailsRequestModel;
+import com.dell.DiscoveryYou.Response.UserMatchDTO;
 import com.dell.DiscoveryYou.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,14 +24,30 @@ public class UserController {
     @Autowired
     UserService userService;
 
+
     @GetMapping
-    public ResponseEntity<List<User>> getUsers(@RequestParam(value="page", required = false) Integer startPage,
-                           @RequestParam(value="limit", required = false) Integer pageOffset) {
+    public ResponseEntity<List<User>> getUsers(
+            @RequestParam(value = "page", required = false) Integer startPage,
+            @RequestParam(value = "limit", required = false) Integer pageOffset) {
         List<User> returnValue;
         if (Optional.ofNullable(startPage).isPresent()  || Optional.ofNullable(pageOffset).isPresent()) {
             returnValue = userService.findAll(startPage, pageOffset);
         } else {
             returnValue = userService.findAll();
+        }
+        return ResponseEntity.ok(returnValue);
+    }
+
+    @GetMapping("/matching/{userBadge}")
+    public ResponseEntity<List<UserMatchDTO>> getUsersMatching(
+            @RequestParam(value = "page", required = false) Integer startPage,
+            @RequestParam(value = "limit", required = false) Integer pageOffset,
+            @PathVariable(value = "userBadge") String userBadge) throws UserNotFound {
+        List<UserMatchDTO> returnValue;
+        if (Optional.ofNullable(startPage).isPresent()  || Optional.ofNullable(pageOffset).isPresent()) {
+            returnValue = userService.getUsersWithMatchingPercentage(userBadge, startPage, pageOffset);
+        } else {
+            returnValue = userService.getUsersWithMatchingPercentage(userBadge);
         }
         return ResponseEntity.ok(returnValue);
     }

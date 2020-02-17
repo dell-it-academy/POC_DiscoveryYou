@@ -21,6 +21,7 @@ public class InterestController {
     @Autowired
     InterestService interestService;
 
+
     @GetMapping
     public ResponseEntity<List<Interest>> getInterests(@RequestParam(value="page",  defaultValue  = "1", required = false) int startPage,
                                                @RequestParam(value="limit", defaultValue = "50", required = false) int pageOffset) {
