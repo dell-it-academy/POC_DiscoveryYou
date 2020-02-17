@@ -10,16 +10,14 @@ import java.util.List;
 @Entity
 public class Interest {
 
-    public Interest() {}
-
-    public Interest(String name) {
-        this.name = name;
-        this.users = new ArrayList<User>();
-    }
+    /**
+     * PROPERTIES
+     */
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "interest_id_gen")
     @SequenceGenerator(name = "interest_id_gen",sequenceName = "interest_id_seq")
+    @Column(name = "interest_id")
     private Long id;
 
     @NotBlank(message = ReturnMessages.NAME_NOT_BLANK)
@@ -28,28 +26,50 @@ public class Interest {
     @ManyToMany(fetch = FetchType.LAZY)
     private List<User> users;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    /**
+     * CONSTRUCTORS
+     */
 
-    public void setName(String name) {
+    public Interest() {}
+
+    public Interest(String name) {
         this.name = name;
+        this.users = new ArrayList<User>();
     }
 
-    public List<User> getUsers() { return this.users; }
+    /**
+     * GETTERS
+     */
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public Long getId() {
+        return this.id;
     }
-
 
     public String getName() {
         return this.name;
     }
 
-    public Long getId() {
-        return this.id;
+    public List<User> getUsers() {
+        return this.users;
     }
+
+    /**
+     * SETTERS
+     */
+
+    public void setId(Long id) { this.id = id; }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    /**
+     * UTILITIES
+     */
 
     @Override
     public String toString() {

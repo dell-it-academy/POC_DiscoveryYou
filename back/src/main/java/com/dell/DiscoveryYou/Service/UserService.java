@@ -65,11 +65,14 @@ public class UserService {
 //    }
 
     @Transactional
-    public User createUser(@Valid CreateUserDetailsRequestModel user) {
+    public User createUser(@Valid CreateUserDetailsRequestModel user) throws UserAlreadyExists{
         User returnValue = users.get(user.getBadge());
-        if (returnValue == null)
-            returnValue = this.getUserByBadge(user.getBadge());
-        if (returnValue == null) {
+        if (returnValue != null)
+            throw new UserAlreadyExists("A user with badge " + user.getBadge() + " already exists");
+        returnValue = this.getUserByBadge(user.getBadge());
+        if (returnValue != null) {
+            throw new UserAlreadyExists("A user with badge " + user.getBadge() + " already exists");
+        } else {
             returnValue = new User();
             returnValue.setFirstName(user.getFirstName());
             returnValue.setLastName(user.getLastName());

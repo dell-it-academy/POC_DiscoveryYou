@@ -47,7 +47,7 @@ public class UserController {
     }
 
     @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity createUser(@Valid @RequestBody CreateUserDetailsRequestModel userDetails){
+    public ResponseEntity createUser(@Valid @RequestBody CreateUserDetailsRequestModel userDetails) throws UserAlreadyExists {
         User returnValue = userService.createUser(userDetails);
         ResponseEntity<User> response;
         if (returnValue != null)

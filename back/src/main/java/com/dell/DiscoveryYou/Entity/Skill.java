@@ -12,6 +12,27 @@ import java.util.List;
 @Entity
 public class Skill {
 
+    /**
+     * PROPERTIES
+     */
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "skill_id_gen")
+    @SequenceGenerator(name = "skill_id_gen", sequenceName = "skill_id_seq")
+    @Column(name = "skill_id")
+    private Long id;
+
+    @NotBlank(message = ReturnMessages.NAME_NOT_BLANK)
+    private String name;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<User> users;
+
+
+    /**
+     * CONSTRUCTORS
+     */
+
     public Skill() {}
 
     public Skill(String name) {
@@ -19,39 +40,39 @@ public class Skill {
         this.users = new ArrayList<User>();
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "skill_id_gen")
-    @SequenceGenerator(name = "skill_id_gen", sequenceName = "skill_id_seq")
-    private Long id;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<User> users;
-
-    @NotBlank(message = ReturnMessages.NAME_NOT_BLANK)
-    private String name;
-
+    /**
+     * GETTERS
+     */
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getName() {
+        return this.name;
     }
 
-    public List<User> getUsers() { return this.users; }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public List<User> getUsers() {
+        return this.users;
     }
+
+    /**
+     * SETTERS
+     */
+
+    public void setId(Long id) { this.id = id; }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getName() {
-        return this.name;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
+
+    /**
+     * UTILITIES
+     */
 
     @Override
     public String toString() {
