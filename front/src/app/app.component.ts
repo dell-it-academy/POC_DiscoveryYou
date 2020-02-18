@@ -12,12 +12,17 @@ export class AppComponent implements OnInit{
   ngOnInit(){
     this.userService.getProfile("1230422").subscribe(
       res =>{
-        this.currentProfile = res as any;
-        console.log(this.currentProfile);
-
+        this.currentProfile = new ProfileModel();
+        this.currentProfile.firstName = res['firstName'];
+        this.currentProfile.lastName = res['lastName'];
+        this.currentProfile.badge = res['badge'];
       }
     );
-
   }
+
+  // sendName{
+
+
+  // }
   constructor(private userService:ProfileRequesterService){}
 }

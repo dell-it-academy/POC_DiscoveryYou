@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-@CrossOrigin(origins = "localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/users") // http://localhost:8080/users
 public class UserController {
@@ -28,10 +27,6 @@ public class UserController {
     }
 
     @GetMapping(path ="/{badge}",
-        consumes = {
-            MediaType.APPLICATION_JSON_VALUE,
-            MediaType.APPLICATION_XML_VALUE
-        },
         produces = {
             MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE

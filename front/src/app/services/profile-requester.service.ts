@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { ProfileModel } from '../models/profile/profile-model';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +12,7 @@ export class ProfileRequesterService {
     let headers = new HttpHeaders();
     headers.append("Accept","application/json");
     headers.append("Content-Type","application/json");
-
+    
     return this.httpProfile.get(`${this.standardUrl}${badge}`,{headers});
   }
 }

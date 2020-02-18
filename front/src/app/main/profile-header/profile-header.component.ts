@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-profile-header',
@@ -6,11 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-header.component.css']
 })
 export class ProfileHeaderComponent implements OnInit {
-
+@Input() arrayName: String;
+public firstName : String;
+public lastName : String;
   constructor() { }
-  userName : String = "Donald Trump";
   
   ngOnInit(): void {
+    this.firstName = this.arrayName[0];
+    this.lastName = this.arrayName[1];
   }
 
 }

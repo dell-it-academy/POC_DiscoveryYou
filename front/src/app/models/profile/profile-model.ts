@@ -1,6 +1,8 @@
 export class ProfileModel {
-    private badge:String;
-    private id:Number;
+    badge:String;
+    id:Number;
+    firstName:String;
+    lastName:String;
     /*
         Check backend pls
     */
