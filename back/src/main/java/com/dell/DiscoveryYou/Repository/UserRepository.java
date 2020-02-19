@@ -46,5 +46,5 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
      */
     public List<User> findByFirstNameIgnoreCaseContaining(String searchName);
 
-    public List<User> findAll();
+    List<User> findAll();
 }

@@ -1,0 +1,18 @@
+.wrapper{
+    width: 80vw;
+    margin:0 auto;
+}
+header *{
+    
+    padding: 0.5%;
+    text-indent: 1em;
+    font-size: 3em;
+    color:rgb(0,118,206);
+}
+.cardsWrapper{
+    border-radius: 20px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 3%;
+    /* background-color: rgb(0,68,124); */
+}

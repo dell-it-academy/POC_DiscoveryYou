@@ -1,6 +1,8 @@
 <section id="wrapper">
     <ng-template [ngIf] = "currentProfile" >
         <app-profile-header [arrayName] = "[currentProfile.firstName, currentProfile.lastName]" ></app-profile-header>
+        <app-card-dashboard></app-card-dashboard>
+        <app-user-caracteristic [userCaracteristics] = "userSkills"></app-user-caracteristic>
+        <app-user-caracteristic [userCaracteristics] = "userInterests"></app-user-caracteristic>
     </ng-template> 
-    <app-card-dashboard></app-card-dashboard>
 </section>

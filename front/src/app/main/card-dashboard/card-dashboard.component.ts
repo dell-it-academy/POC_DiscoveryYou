@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-dashboard.component.css']
 })
 export class CardDashboardComponent implements OnInit {
-  profileProperties :Object = {numberCard:"69",textCard:"Text Sample", routerLink:"GONNAWORKONIT"};
+  connections :Object = {numberCard:"10",textCard:"Number of connections"};
   constructor() { }
 
   ngOnInit(): void {

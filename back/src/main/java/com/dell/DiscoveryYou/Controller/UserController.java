@@ -2,7 +2,10 @@ package com.dell.DiscoveryYou.Controller;
 
 import com.dell.DiscoveryYou.Entity.User;
 import com.dell.DiscoveryYou.Exception.*;
+import com.dell.DiscoveryYou.Request.AssociateUserInterestRequestModel;
+import com.dell.DiscoveryYou.Request.AssociateUserSkillRequestModel;
 import com.dell.DiscoveryYou.Request.CreateUserDetailsRequestModel;
+import com.dell.DiscoveryYou.Response.UserMatchDTO;
 import com.dell.DiscoveryYou.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.List;
+import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/users") // http://localhost:8080/users
@@ -20,82 +26,111 @@ public class UserController {
     @Autowired
     UserService userService;
 
+
     @GetMapping
-    public String getUsers(@RequestParam(value="page",  defaultValue  = "1") int startPage,
-                           @RequestParam(value="limit", defaultValue = "50") int pageOffset){
-        return userService.findAll(startPage, pageOffset).toString();
+    public ResponseEntity<List<User>> getUsers(
+            @RequestParam(value = "page", required = false) Integer startPage,
+            @RequestParam(value = "limit", required = false) Integer pageOffset) {
+        List<User> returnValue;
+        if (Optional.ofNullable(startPage).isPresent()  || Optional.ofNullable(pageOffset).isPresent()) {
+            returnValue = userService.findAll(startPage, pageOffset);
+        } else {
+            returnValue = userService.findAll();
+        }
+        return ResponseEntity.ok(returnValue);
     }
 
-    @GetMapping(path ="/{badge}",
-        produces = {
-            MediaType.APPLICATION_JSON_VALUE,
-            MediaType.APPLICATION_XML_VALUE
+    @GetMapping("/matching/{userBadge}")
+    public ResponseEntity<List<UserMatchDTO>> getUsersMatching(
+            @RequestParam(value = "page", required = false) Integer startPage,
+            @RequestParam(value = "limit", required = false) Integer pageOffset,
+            @PathVariable(value = "userBadge") String userBadge) throws UserNotFound {
+        List<UserMatchDTO> returnValue;
+        if (Optional.ofNullable(startPage).isPresent()  || Optional.ofNullable(pageOffset).isPresent()) {
+            returnValue = userService.getUsersWithMatchingPercentage(userBadge, startPage, pageOffset);
+        } else {
+            returnValue = userService.getUsersWithMatchingPercentage(userBadge);
         }
-    )
+        return ResponseEntity.ok(returnValue);
+    }
+
+    @GetMapping(path ="/{badge}", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<User> getUserByBadge(@PathVariable String badge){
-        User returnValue = userService.getUsersByBadge(badge);
-
-        if(returnValue == null)
-            return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
+        User returnValue = userService.getUserByBadge(badge);
+        ResponseEntity<User> response;
+        if (returnValue == null)
+            response = new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
         else
-            return new ResponseEntity<>(returnValue, HttpStatus.OK);
-
+            response = new ResponseEntity<User>(returnValue, HttpStatus.OK);
+        return response;
     }
 
-    @PostMapping(
-        consumes = {
-            MediaType.APPLICATION_JSON_VALUE,
-            MediaType.APPLICATION_XML_VALUE
-        },
-        produces = {
-            MediaType.APPLICATION_JSON_VALUE,
-            MediaType.APPLICATION_XML_VALUE
-        }
-    )
-    public ResponseEntity createUser(@Valid @RequestBody CreateUserDetailsRequestModel userDetails){
+    @PostMapping(path="/create/user",consumes = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity createUser(@Valid @RequestBody CreateUserDetailsRequestModel userDetails) throws UserAlreadyExists {
         User returnValue = userService.createUser(userDetails);
+        ResponseEntity<User> response;
         if (returnValue != null)
-            return new ResponseEntity(returnValue, HttpStatus.CREATED);
-        return new ResponseEntity(HttpStatus.I_AM_A_TEAPOT);
+            response = new ResponseEntity(returnValue, HttpStatus.CREATED);
+        else
+            response = new ResponseEntity(HttpStatus.I_AM_A_TEAPOT);
+        return response;
+    }
+
+    @PostMapping(path="/create/userList",consumes = { MediaType.APPLICATION_JSON_VALUE })
+    public void createUser(@Valid @RequestBody CreateUserDetailsRequestModel[] usersDetails) throws UserAlreadyExists {
+        for (CreateUserDetailsRequestModel user: usersDetails
+             ) {
+            User returnValue = userService.createUser(user);
+        }
+
     }
 
     @PostMapping("/associate/interest")
-    public ResponseEntity<String> associateInterestToUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String interestName) throws UserNotFound, UserAlreadyHasInterest {
-        boolean result = userService.associateInterestToUser(userBadge, interestName);
-        if (result) {
-            return ResponseEntity.status(HttpStatus.OK).build();
+    public ResponseEntity<User> associateInterestToUser(@RequestBody @Valid AssociateUserInterestRequestModel userInterestModel) throws UserNotFound, UserAlreadyHasInterest {
+
+        User returnValue = userService.associateInterestToUser(userInterestModel.getUserBadge(), userInterestModel.getInterestName());
+        ResponseEntity<User> response;
+        if (Optional.ofNullable(returnValue).isPresent()) {
+            response = ResponseEntity.ok(returnValue);
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+        return response;
     }
 
     @PostMapping("/associate/skill")
-    public ResponseEntity<String> associateSkillToUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String skillName) throws UserNotFound, UserAlreadyHasSkill {
-        boolean result = userService.associateSkillToUser(userBadge, skillName);
-        if (result) {
-            return ResponseEntity.status(HttpStatus.OK).build();
+    public ResponseEntity<User> associateSkillToUser(@RequestBody @Valid AssociateUserSkillRequestModel userSkill) throws UserNotFound, UserAlreadyHasSkill {
+        User returnValue = userService.associateSkillToUser(userSkill.getUserBadge(), userSkill.getSkillName());
+        ResponseEntity<User> response;
+        if (Optional.ofNullable(returnValue).isPresent()) {
+            response = ResponseEntity.ok(returnValue);
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+        return response;
     }
 
     @PutMapping("/disassociate/interest")
-    public ResponseEntity<String> disassociateInterestFromUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String interestName) throws UserNotFound, UserDoesNotHaveInterest {
-        boolean result = userService.disassociateInterestFromUser(userBadge, interestName);
-        if (result) {
-            return ResponseEntity.status(HttpStatus.OK).build();
+    public ResponseEntity<User> disassociateInterestFromUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String interestName) throws UserNotFound, UserDoesNotHaveInterest {
+        User returnValue = userService.disassociateInterestFromUser(userBadge, interestName);
+        ResponseEntity<User> response;
+        if (Optional.ofNullable(returnValue).isPresent()) {
+            response = ResponseEntity.ok(returnValue);
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+        return response;
     }
 
     @PutMapping("/disassociate/skill")
-    public ResponseEntity<String> disassociateSkillFromUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String skillName) throws UserNotFound, UserDoesNotHaveSkill {
-        boolean result = userService.disassociateSkillFromUser(userBadge, skillName);
-        if (result) {
-            return ResponseEntity.status(HttpStatus.OK).build();
+    public ResponseEntity<User> disassociateSkillFromUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String skillName) throws UserNotFound, UserDoesNotHaveSkill {
+        User returnValue = userService.disassociateSkillFromUser(userBadge, skillName);
+        ResponseEntity<User> response;
+        if (Optional.ofNullable(returnValue).isPresent()) {
+            response = ResponseEntity.ok(returnValue);
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+        return response;
     }
 }

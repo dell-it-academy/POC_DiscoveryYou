@@ -16,7 +16,7 @@ public class UserUtils {
 
     public UserUtils() {}
 
-    public UserMatchDTO  calculateMatchingPercentage(User user, User relUser) {
+    public UserMatchDTO calculateMatchingPercentage(User user, User relUser) {
 
         float userInterestsPercentage = 100;
         float userSkillsPercentage = 100;
@@ -31,6 +31,6 @@ public class UserUtils {
 
         userSkillsPercentage *= infoSet.size() / (float) ((List<Skill>) user.getSkills()).size();
 
-        return new UserMatchDTO(userInterestsPercentage, userSkillsPercentage, user);
+        return new UserMatchDTO(userInterestsPercentage, userSkillsPercentage, relUser);
     }
 }

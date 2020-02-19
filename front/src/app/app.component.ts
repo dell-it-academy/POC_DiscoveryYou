@@ -9,6 +9,8 @@ import {ProfileModel} from './models//profile/profile-model'
 export class AppComponent implements OnInit{
   title = 'Dell Discovery You - Matrix';
   currentProfile:ProfileModel;
+  userSkills: Object;
+  userInterests: Object;
   ngOnInit(){
     this.userService.getProfile("1230422").subscribe(
       res =>{
@@ -16,6 +18,10 @@ export class AppComponent implements OnInit{
         this.currentProfile.firstName = res['firstName'];
         this.currentProfile.lastName = res['lastName'];
         this.currentProfile.badge = res['badge'];
+        this.currentProfile.interests = res['interests'];
+        this.currentProfile.skills = res['skills'];
+        this.userInterests = {"name": "Interests","caracteristic":this.currentProfile.interests}
+        this.userSkills = {"name": "Skills","caracteristic":this.currentProfile.skills}
       }
     );
   }

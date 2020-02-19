@@ -4,14 +4,14 @@ import com.dell.DiscoveryYou.Entity.User;
 
 public class UserMatchDTO {
 
-    float matchingInterest;
-    float matchingSkills;
-    User userReference;
+    float matchingInterest = 0.0f;
+    float matchingSkills = 0.0f;
+    User user;
 
-    public UserMatchDTO(float matchingInterest, float matchingSkills, User userReference) {
+    public UserMatchDTO(float matchingInterest, float matchingSkills, User user) {
         this.matchingInterest = matchingInterest;
         this.matchingSkills = matchingSkills;
-        this.userReference = userReference;
+        this.user = user;
     }
 
     public float getMatchingInterest() {
@@ -31,10 +31,10 @@ public class UserMatchDTO {
     }
 
     public User getUserReference() {
-        return userReference;
+        return user;
     }
 
     public void setUserReference(User userReference) {
-        this.userReference = userReference;
+        this.user = userReference;
     }
 }

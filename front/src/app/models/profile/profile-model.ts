@@ -3,7 +3,6 @@ export class ProfileModel {
     id:Number;
     firstName:String;
     lastName:String;
-    /*
-        Check backend pls
-    */
+    skills:String[];
+    interests:String[];
 }

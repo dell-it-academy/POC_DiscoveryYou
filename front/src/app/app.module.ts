@@ -6,13 +6,17 @@ import { ProfileHeaderComponent } from './main/profile-header/profile-header.com
 import { CardConnectionComponent } from './main/card-connection/card-connection.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CardDashboardComponent } from './main/card-dashboard/card-dashboard.component';
+import { UserCaracteristicComponent } from './main/user-caracteristic/user-caracteristic.component';
+import { CardCaracteristicComponent } from './main/card-caracteristic/card-caracteristic.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileHeaderComponent,
     CardConnectionComponent,
-    CardDashboardComponent
+    CardDashboardComponent,
+    UserCaracteristicComponent,
+    CardCaracteristicComponent
   ],
   imports: [
     BrowserModule,
