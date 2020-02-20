@@ -1,0 +1,15 @@
+div{
+    width: 250px;
+    height: 250px;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(65,182,230);
+    border-radius: 20px;
+
+}
+h2{
+    color:white;
+    font-size: 2em;
+    background-color: transparent;
+}

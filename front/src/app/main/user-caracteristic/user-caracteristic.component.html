@@ -1,0 +1,11 @@
+<div class="wrapper">
+    <header>
+        <h2>
+            {{userCaracteristics.name}}
+        </h2>
+    </header>
+    <div class="cardsWrapper" *ngFor="let caracteristic of userCaracteristics.caracteristic"> 
+        <app-card-caracteristic [name] = "caracteristic.name"></app-card-caracteristic>
+    </div>
+
+</div>
