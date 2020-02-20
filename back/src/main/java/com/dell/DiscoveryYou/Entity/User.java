@@ -1,7 +1,10 @@
 package com.dell.DiscoveryYou.Entity;
 
 import com.dell.DiscoveryYou.Utility.ReturnMessages;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import javax.persistence.*;
@@ -9,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -36,6 +40,14 @@ public class User {
     @NotBlank(message = ReturnMessages.LAST_NAME_NOT_BLANK)
     private String lastName;
 
+    @ManyToMany
+    @JoinTable(name = "matches", indexes = @Index(columnList = "user_id"), joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "rel_user_id"))
+    private List<User> matches;
+
+    @ManyToMany
+    @JoinTable(name = "connections", indexes = @Index(columnList = "user_id"), joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "rel_user_id"))
+    @JsonManagedReference
+    private List<User> connections;
 
     @ManyToMany
     @JoinTable(indexes = @Index(columnList = "user_id"), joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "interest_id"))
@@ -78,6 +90,10 @@ public class User {
         return this.badge;
     }
 
+    public List<User> getMatches() { return this.matches; }
+
+    public List<User> getConnections() { return this.connections; }
+
     public List<Interest> getInterests() {
         return this.interests;
     }
@@ -102,6 +118,10 @@ public class User {
         this.badge = badge;
     }
 
+    public void setMatches(List<User> matches) { this.matches = matches; }
+
+    public void setConnections(List<User> collections) { this.connections = connections; }
+
     public void setInterests(List<Interest> interests) {
         this.interests = interests;
     }
@@ -113,6 +133,26 @@ public class User {
     /**
      * PERSISTENCE METHODS
      */
+
+    public void insertMatch(User user) {
+        this.matches.add(user);
+        user.getMatches().add(this);
+    }
+
+    public void removeMatch(User user) {
+        this.matches.remove(user);
+        user.getMatches().remove(this);
+    }
+
+    public void insertConnection(User user) {
+        this.connections.add(user);
+        user.getConnections().add(this);
+    }
+
+    public void removeConnection(User user) {
+        this.connections.remove(user);
+        user.getConnections().remove(this);
+    }
 
     public void insertInterest(Interest interest){
         this.interests.add(interest);

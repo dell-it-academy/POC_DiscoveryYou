@@ -54,14 +54,26 @@ public class UserController {
         return ResponseEntity.ok(returnValue);
     }
 
-    @GetMapping(path ="/{badge}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<User> getUserByBadge(@PathVariable String badge){
-        User returnValue = userService.getUserByBadge(badge);
+    @GetMapping(path = "/{userBadge}", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<User> getUserByBadge(@PathVariable String userBadge) {
+        User returnValue = userService.getUserByBadge(userBadge);
         ResponseEntity<User> response;
         if (returnValue == null)
             response = new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
         else
             response = new ResponseEntity<User>(returnValue, HttpStatus.OK);
+        return response;
+    }
+
+    @GetMapping(path = "/matches/{userBadge}", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<List<User>> getUserMatches(@PathVariable String userBadge) {
+        User user = userService.getUserByBadge(userBadge);
+        List<User> returnValue = user.getMatches();
+        ResponseEntity<List<User>> response;
+        if (returnValue == null)
+            response = new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
+        else
+            response = new ResponseEntity<List<User>>(returnValue, HttpStatus.OK);
         return response;
     }
 
@@ -124,6 +136,18 @@ public class UserController {
         return response;
     }
 
+    @PostMapping("/associate/user")
+    public ResponseEntity<User> associateUserToUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String relUserBadge) throws UserNotFound, UserAlreadyConnected {
+        User returnValue = userService.associateUserToUser(userBadge, relUserBadge);
+        ResponseEntity<User> response;
+        if (Optional.ofNullable(returnValue).isPresent()) {
+            response = ResponseEntity.ok(returnValue);
+        } else {
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return response;
+    }
+
     @PutMapping("/disassociate/interest")
     public ResponseEntity<User> disassociateInterestFromUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String interestName) throws UserNotFound, UserDoesNotHaveInterest {
         User returnValue = userService.disassociateInterestFromUser(userBadge, interestName);
@@ -139,6 +163,30 @@ public class UserController {
     @PutMapping("/disassociate/skill")
     public ResponseEntity<User> disassociateSkillFromUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String skillName) throws UserNotFound, UserDoesNotHaveSkill {
         User returnValue = userService.disassociateSkillFromUser(userBadge, skillName);
+        ResponseEntity<User> response;
+        if (Optional.ofNullable(returnValue).isPresent()) {
+            response = ResponseEntity.ok(returnValue);
+        } else {
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return response;
+    }
+
+    @PutMapping("disassociate/user")
+    public ResponseEntity<User> disassociateUserFromUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String relUserBadge) throws UserNotFound, UserNotConnected {
+        User returnValue = userService.disassociateUserFromUser(userBadge, relUserBadge);
+        ResponseEntity<User> response;
+        if (Optional.ofNullable(returnValue).isPresent()) {
+            response = ResponseEntity.ok(returnValue);
+        } else {
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return response;
+    }
+
+    @PutMapping("/unmatch")
+    public ResponseEntity<User> unmatchUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String relUserBadge) throws UserNotFound, UserNotMatched {
+        User returnValue = userService.unmatch(userBadge, relUserBadge);
         ResponseEntity<User> response;
         if (Optional.ofNullable(returnValue).isPresent()) {
             response = ResponseEntity.ok(returnValue);

@@ -129,6 +129,20 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    @Transactional
+    public User associateUserToUser(String userBadge, String relUserBadge) throws UserNotFound, UserAlreadyConnected {
+        User user = this.getUserByBadge(userBadge);
+        User relUser = this.getUserByBadge(relUserBadge);
+        if (user == null)
+            throw new UserNotFound("User with badge " + userBadge + " not found");
+        if (relUser == null)
+            throw new UserNotFound("User with badge " + relUserBadge + " not found");
+        if (user.getConnections().contains(relUser))
+            throw new UserAlreadyConnected("User with badge " + userBadge + " already connected to user with badge " + relUserBadge);
+        user.getConnections().add(relUser);
+        return userRepository.save(checkIfMatch(user, relUser));
+    }
+
     // Todo: update usermap cache
     @Transactional
     public User disassociateInterestFromUser(String userBadge, String interestName) throws UserNotFound, UserDoesNotHaveInterest {
@@ -155,8 +169,43 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    @Transactional
+    public User disassociateUserFromUser(String userBadge, String relUserBadge) throws UserNotFound, UserNotConnected {
+        User user = this.getUserByBadge(userBadge);
+        User relUser = this.getUserByBadge(relUserBadge);
+        if (user == null)
+            throw new UserNotFound("User with badge " + userBadge + " not found");
+        if (relUser == null)
+            throw new UserNotFound("User with badge " + relUserBadge + " not found");
+        if (!user.getConnections().contains(relUser))
+            throw new UserNotConnected("User with badge " + userBadge + " is not connected to user with badge " + relUserBadge);
+        user.getConnections().remove(relUser);
+        return userRepository.save(user);
+    }
+
+    @Transactional
+    public User unmatch(String userBadge, String relUserBadge) throws UserNotFound, UserNotMatched {
+        User user = this.getUserByBadge(userBadge);
+        User relUser = this.getUserByBadge(relUserBadge);
+        if (user == null)
+            throw new UserNotFound("User with badge " + userBadge + " not found");
+        if (relUser == null)
+            throw new UserNotFound("User with badge " + relUserBadge + " not found");
+        if (!user.getMatches().contains(relUser) && !relUser.getMatches().contains(user))
+            throw new UserNotMatched("User with badge " + userBadge + " is not matched with user with badge " + relUserBadge);
+        user.removeMatch(relUser);
+        return userRepository.save(user);
+    }
+
     public User getUserByBadge(String userBadge) {
         Optional<User> userOptional = userRepository.findByBadge(userBadge);
         return userOptional.orElse(null);
+    }
+
+    private User checkIfMatch(User user, User connection) {
+        if (user.getConnections().contains(connection) && connection.getConnections().contains(user)) {
+            user.insertMatch(connection);
+        }
+        return user;
     }
 }
