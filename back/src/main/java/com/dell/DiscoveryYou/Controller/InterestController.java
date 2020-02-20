@@ -42,6 +42,13 @@ public class InterestController {
         return new ResponseEntity(returnValue, HttpStatus.OK);
     }
 
+    @PostMapping(path="/create/interestList", consumes = { MediaType.APPLICATION_JSON_VALUE })
+    public void createInterest(@Valid @RequestBody CreateInterestDetailsRequestModel[] interestsDetails) {
+        for (CreateInterestDetailsRequestModel interest: interestsDetails) {
+            interestService.createInterest(interest);
+        }
+    }
+
 //    @GetMapping("/user/{userBadge}")
 //    public ResponseEntity<Interest> getInterestByUser(@PathVariable String userBadge) {
 //        List<Interest> returnValue = interestService.getInterestsByUser(userBadge);

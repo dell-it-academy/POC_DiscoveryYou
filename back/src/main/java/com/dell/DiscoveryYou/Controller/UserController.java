@@ -2,6 +2,8 @@ package com.dell.DiscoveryYou.Controller;
 
 import com.dell.DiscoveryYou.Entity.User;
 import com.dell.DiscoveryYou.Exception.*;
+import com.dell.DiscoveryYou.Request.AssociateUserInterestRequestModel;
+import com.dell.DiscoveryYou.Request.AssociateUserSkillRequestModel;
 import com.dell.DiscoveryYou.Request.CreateUserDetailsRequestModel;
 import com.dell.DiscoveryYou.Response.UserMatchDTO;
 import com.dell.DiscoveryYou.Service.UserService;
@@ -74,9 +76,33 @@ public class UserController {
         return response;
     }
 
+//    @PostMapping("/associate/interest")
+//    public ResponseEntity<User> associateInterestToUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String interestName) throws UserNotFound, UserAlreadyHasInterest {
+//        User returnValue = userService.associateInterestToUser(userBadge, interestName);
+//        ResponseEntity<User> response;
+//        if (Optional.ofNullable(returnValue).isPresent()) {
+//            response = ResponseEntity.ok(returnValue);
+//        } else {
+//            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+//        }
+//        return response;
+//    }
+//
+//    @PostMapping("/associate/skill")
+//    public ResponseEntity<User> associateSkillToUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String skillName) throws UserNotFound, UserAlreadyHasSkill {
+//        User returnValue = userService.associateSkillToUser(userBadge, skillName);
+//        ResponseEntity<User> response;
+//        if (Optional.ofNullable(returnValue).isPresent()) {
+//            response = ResponseEntity.ok(returnValue);
+//        } else {
+//            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+//        }
+//        return response;
+//    }
+
     @PostMapping("/associate/interest")
-    public ResponseEntity<User> associateInterestToUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String interestName) throws UserNotFound, UserAlreadyHasInterest {
-        User returnValue = userService.associateInterestToUser(userBadge, interestName);
+    public ResponseEntity<User> associateInterestToUser(@RequestBody @Valid AssociateUserInterestRequestModel userInterestModel) throws UserNotFound, UserAlreadyHasInterest {
+        User returnValue = userService.associateInterestToUser(userInterestModel.getUserBadge(), userInterestModel.getInterestName());
         ResponseEntity<User> response;
         if (Optional.ofNullable(returnValue).isPresent()) {
             response = ResponseEntity.ok(returnValue);
@@ -87,8 +113,8 @@ public class UserController {
     }
 
     @PostMapping("/associate/skill")
-    public ResponseEntity<User> associateSkillToUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String skillName) throws UserNotFound, UserAlreadyHasSkill {
-        User returnValue = userService.associateSkillToUser(userBadge, skillName);
+    public ResponseEntity<User> associateSkillToUser(@RequestBody @Valid AssociateUserSkillRequestModel userSkill) throws UserNotFound, UserAlreadyHasSkill {
+        User returnValue = userService.associateSkillToUser(userSkill.getUserBadge(), userSkill.getSkillName());
         ResponseEntity<User> response;
         if (Optional.ofNullable(returnValue).isPresent()) {
             response = ResponseEntity.ok(returnValue);

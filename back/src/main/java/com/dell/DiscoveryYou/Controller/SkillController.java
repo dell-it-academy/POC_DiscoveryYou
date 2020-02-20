@@ -34,16 +34,7 @@ public class SkillController {
         return ResponseEntity.ok(returnValue);
     }
 
-    @GetMapping(path ="/{name}",
-            consumes = {
-                    MediaType.APPLICATION_JSON_VALUE,
-                    MediaType.APPLICATION_XML_VALUE
-            },
-            produces = {
-                    MediaType.APPLICATION_JSON_VALUE,
-                    MediaType.APPLICATION_XML_VALUE
-            }
-    )
+    @GetMapping(path ="/{name}", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<Skill> getSkillByName(@PathVariable String skillName){
         Skill returnValue = skillService.getSkillByName(skillName);
 
@@ -52,6 +43,14 @@ public class SkillController {
 
         return new ResponseEntity<Skill>(returnValue, HttpStatus.OK);
 
+    }
+
+    @PostMapping(path="/create/skillList", consumes = { MediaType.APPLICATION_JSON_VALUE })
+    public void createSkill(@Valid @RequestBody CreateSkillDetailsRequestModel[] skillsDetails) {
+        for (CreateSkillDetailsRequestModel skill : skillsDetails
+        ) {
+            skillService.createSkill(skill);
+        }
     }
 
 //    @PostMapping(
