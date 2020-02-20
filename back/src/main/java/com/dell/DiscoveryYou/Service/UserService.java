@@ -130,7 +130,9 @@ public class UserService {
     }
 
     @Transactional
-    public User associateUserToUser(String userBadge, String relUserBadge) throws UserNotFound, UserAlreadyConnected {
+    public User associateUserToUser(String userBadge, String relUserBadge) throws UserNotFound, UserAlreadyConnected, CannotAssociateSelf {
+        if (userBadge.equals(relUserBadge))
+            throw new CannotAssociateSelf("Cannot associate to self");
         User user = this.getUserByBadge(userBadge);
         User relUser = this.getUserByBadge(relUserBadge);
         if (user == null)

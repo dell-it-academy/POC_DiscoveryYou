@@ -5,8 +5,10 @@ import com.dell.DiscoveryYou.Exception.*;
 import com.dell.DiscoveryYou.Request.AssociateUserInterestRequestModel;
 import com.dell.DiscoveryYou.Request.AssociateUserSkillRequestModel;
 import com.dell.DiscoveryYou.Request.CreateUserDetailsRequestModel;
+import com.dell.DiscoveryYou.Response.UserDTO;
 import com.dell.DiscoveryYou.Response.UserMatchDTO;
 import com.dell.DiscoveryYou.Service.UserService;
+import com.dell.DiscoveryYou.Util.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,6 +19,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -25,6 +28,8 @@ public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    UserUtils userUtils;
 
 
     @GetMapping
@@ -66,14 +71,15 @@ public class UserController {
     }
 
     @GetMapping(path = "/matches/{userBadge}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<List<User>> getUserMatches(@PathVariable String userBadge) {
+    public ResponseEntity<List<UserDTO>> getUserMatches(@PathVariable String userBadge) {
         User user = userService.getUserByBadge(userBadge);
-        List<User> returnValue = user.getMatches();
-        ResponseEntity<List<User>> response;
+        UserDTO userDTO = new UserDTO();
+        List<UserDTO> returnValue = user.getMatches().stream().map(u -> userUtils.convertUserToUserDTO(u)).collect(Collectors.toList());
+        ResponseEntity<List<UserDTO>> response;
         if (returnValue == null)
             response = new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
         else
-            response = new ResponseEntity<List<User>>(returnValue, HttpStatus.OK);
+            response = new ResponseEntity<List<UserDTO>>(returnValue, HttpStatus.OK);
         return response;
     }
 
@@ -137,7 +143,7 @@ public class UserController {
     }
 
     @PostMapping("/associate/user")
-    public ResponseEntity<User> associateUserToUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String relUserBadge) throws UserNotFound, UserAlreadyConnected {
+    public ResponseEntity<User> associateUserToUser(@RequestParam @NotNull String userBadge, @RequestParam @NotNull String relUserBadge) throws UserNotFound, UserAlreadyConnected, CannotAssociateSelf {
         User returnValue = userService.associateUserToUser(userBadge, relUserBadge);
         ResponseEntity<User> response;
         if (Optional.ofNullable(returnValue).isPresent()) {

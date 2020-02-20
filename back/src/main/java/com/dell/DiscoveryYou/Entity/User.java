@@ -40,13 +40,14 @@ public class User {
     @NotBlank(message = ReturnMessages.LAST_NAME_NOT_BLANK)
     private String lastName;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "matches", indexes = @Index(columnList = "user_id"), joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "rel_user_id"))
+    @JsonIgnore
     private List<User> matches;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "connections", indexes = @Index(columnList = "user_id"), joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "rel_user_id"))
-    @JsonManagedReference
+    @JsonIgnore
     private List<User> connections;
 
     @ManyToMany
